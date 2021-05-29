@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>User</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+</head>
+
+<body>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+            <form class="login100-form validate-form flex-sb flex-w">
+                <div class="login100-form-title">
+                    Dados do usuário
+                </div>
+                <div class="p-t-15 p-b-15">
+                    <div class="txt5 p-b-11">
+                        RESUMO
+                    </div>
+                    <div>
+					    <span class="txt1">
+					    	Email
+					    </span>
+                        <span class="txt3" id="email"></span>
+                    </div>
+
+                    <div>
+						<span class="txt1">
+							Número USP
+						</span>
+                        <span class="txt3" id="iduser"></span>
+                    </div>
+
+                    <div>
+						<span class="txt1">
+							Perguntas e respostas já desenvolvidas
+						</span>
+                        <span class="txt3" id="sumanswer"></span>
+                    </div>
+                    <div>
+						<span class="txt1">
+							Pontos Acumulados
+						</span>
+                        <span class="txt3" id="sumscore"></span>
+                        <span class="txt3" id="score"></span>
+                    </div>
+                </div>
+
+                <div class="p-r-85 p-b-15">
+                    <div class="txt5 p-b-11">
+                        Edite Perguntas e respostas
+                    </div>
+
+                    <div class="p-b-11" style="display:inline-block;max-width:400px;">
+                        <span class="txt1">
+                            Título do texto a ser editado
+                        </span>
+                        <select id="idarticle"
+                                class="select txt1 p-b-5 p-t-5">
+                        </select>
+                    </div>
+                    <div class="p-b-11" style="display:inline-block;max-width:400px;">
+                        <span class="txt1">
+                            Pergunta/Resposta a ser editada
+                        </span>
+                        <select id="idqa" class="select txt1 p-b-11">
+                        </select>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btnpequeno" type="button" id="btnEdit">
+                            Editar
+                        </button>
+                        <button class="login100-form-btnpequeno" type="button" id="btnDelete">
+                            Excluir
+                        </button>
+                    </div>
+                </div>
+
+                <div class="txt1 p-b-10 p-t-10">
+                    Se ainda não desenvolveu 2 perguntas/respostas
+                    para o último texto visualizado,
+                    você será novamente direcionado a ele.
+                    Do contrário, será direcionado a um novo texto.
+                </div>
+
+                <div class="container-login100-form-btn p-l-57 p-r-88 p-t-15 p-b-15">
+                    <a href="5-question-answer.html">
+                        <button class="login100-form-btn" type="button">
+                            Continuar respondendo
+                        </button>
+                    </a>
+                </div>
+
+                <div class="txt1 p-b-10 p-t-10">
+                    Se desejar, poderá finalizar a tarefa agora e continuar em outro momento.
+                </div>
+
+                <div class="container-login100-form-btn p-l-88 p-r-88 p-t-15">
+                    <a href="99-end.html">
+                        <button class="login100-form-btn" id="btnContinuar" type="button">
+                            Continuar depois
+                        </button>
+                    </a>
+                </div>
+                <div class="flex-sb-m w-full p-t-30">
+                    <a href="8-instructions-lite.html"
+                       target="_blank" class="txt3">
+                        Acesse novamente as instruções se tiver alguma dúvida.
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--===============================================================================================-->
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="vendor/select2/select2.min.js"></script>
+<script src="js/6.js"></script>
+<!--===============================================================================================-->
+
+</body>
+</html>
