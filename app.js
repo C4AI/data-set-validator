@@ -109,7 +109,7 @@ app.get('/validate', async (req, res) => {
 
                    v.answeren as answerenv ,
                    v.answerpt as answerptv,
-                   v.canuseranswer,
+                   v.cannotuseranswer,
                    
                    q.questionen,
                    q.questionpt,
@@ -177,7 +177,7 @@ app.get('/validate/one', async (req, res) => {
                    
                    v.answeren,
                    v.answerpt,
-                   v.canuseranswer,
+                   v.cannotuseranswer,
                    v.istexttopic,
                    v.makessenseq,
                    v.makessensea,
@@ -232,13 +232,13 @@ app.delete('/validate', async (req, res) => {
 app.post('/validate', async (req, res) => {
     const client = await pool.connect();
     try {
-        const {answeren, answerpt, canuseranswer, iduser, idqa} = req.body;
+        const {answeren, answerpt, cannotuseranswer, iduser, idqa} = req.body;
         const query1 = `
-            INSERT INTO validate(date, answeren, answerpt, canuseranswer, iduser, idqa, iscomplete)
+            INSERT INTO validate(date, answeren, answerpt, cannotuseranswer, iduser, idqa, iscomplete)
             VALUES ((SELECT CURRENT_DATE), $1, $2, $3, $4, $5, FALSE);`;
 
         const result = await client
-            .query(query1,[answeren, answerpt, canuseranswer, iduser, idqa]);
+            .query(query1,[answeren, answerpt, cannotuseranswer, iduser, idqa]);
 
         res.send(JSON.stringify(result));
 
@@ -252,22 +252,22 @@ app.post('/validate', async (req, res) => {
 app.put('/validate', async (req, res) => {
     const client = await pool.connect();
     try {
-        const {idvalidate, iduser, idqa, answeren, answerpt, canuseranswer, istexttopic, makessenseq,
+        const {idvalidate, iduser, idqa, answeren, answerpt, cannotuseranswer, istexttopic, makessenseq,
             makessensea, translationquality, canuseonlytextq, typeq } = req.body;
         const query1 = `
-            INSERT INTO validate(date, idvalidate, iduser, idqa, answeren, answerpt, canuseranswer, istexttopic, makessenseq,
+            INSERT INTO validate(date, idvalidate, iduser, idqa, answeren, answerpt, cannotuseranswer, istexttopic, makessenseq,
                                  makessensea, translationquality, canuseonlytextq, typeq, iscomplete)
             VALUES ((SELECT CURRENT_DATE), $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, TRUE)
-            ON CONFLICT (idvalidate) DO UPDATE SET (date,answeren, answerpt, canuseranswer, istexttopic, makessenseq,makessensea, 
+            ON CONFLICT (idvalidate) DO UPDATE SET (date,answeren, answerpt, cannotuseranswer, istexttopic, makessenseq,makessensea, 
                                                                   translationquality, canuseonlytextq, typeq, iscomplete)=
                 
                                                  (
-                                                  EXCLUDED.date,EXCLUDED.answeren,EXCLUDED.answerpt,EXCLUDED.canuseranswer,EXCLUDED.istexttopic,
+                                                  EXCLUDED.date,EXCLUDED.answeren,EXCLUDED.answerpt,EXCLUDED.cannotuseranswer,EXCLUDED.istexttopic,
                                                   EXCLUDED.makessenseq,EXCLUDED.makessensea,EXCLUDED.translationquality,EXCLUDED.canuseonlytextq,
                                                   EXCLUDED.typeq,EXCLUDED.iscomplete
                                                  );`
         const result = await client
-            .query(query1,[idvalidate, iduser, idqa, answeren, answerpt, canuseranswer, istexttopic, makessenseq,
+            .query(query1,[idvalidate, iduser, idqa, answeren, answerpt, cannotuseranswer, istexttopic, makessenseq,
                 makessensea, translationquality, canuseonlytextq, typeq ]);
 
         res.send(JSON.stringify(result));

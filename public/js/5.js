@@ -21,7 +21,7 @@
                         questionpt,
                         answerenv,
                         answerptv,
-                        canuseranswer,
+                        cannotuseranswer,
                         answeren,
                         answerpt
                     } = response.rows[0];
@@ -30,7 +30,8 @@
 
                     $("#answerenv").empty().append(answerenv);
                     $("#answerptv").empty().append(answerptv);
-                    $("#canuseranswer").prop('checked', canuseranswer);
+
+                    $("#cannotuseranswer").empty().append(cannotuseranswer);
 
                     $("#title").empty().append(title);
                     $("#abstract").empty().append(abstract);
@@ -94,10 +95,10 @@
 
         const answerenv = $("#answerenv").text();
         const answerptv = $("#answerptv").text();
-        const canuseranswer = $("#canuseranswer").is(":checked")
+        const cannotuseranswer = Boolean ($("#cannotuseranswer").text());
 
-        const istexttopic = $("#istexttopic").is(":checked")
-        const canuseonlytextq = $("#canuseonlytextq").is(":checked")
+        const istexttopic = $("#istexttopic input[type='radio']:checked").val();
+        const canuseonlytextq = $("#canuseonlytextq input[type='radio']:checked").val();
 
         const makessenseq = $("#makessenseq input[type='radio']:checked").val();
         const makessensea = $("#makessensea input[type='radio']:checked").val();
@@ -115,7 +116,7 @@
 
                 'answeren': answerenv,
                 'answerpt': answerptv,
-                'canuseranswer': canuseranswer,
+                'cannotuseranswer': cannotuseranswer,
 
                 'istexttopic': istexttopic,
                 'makessenseq': makessenseq,

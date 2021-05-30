@@ -30,7 +30,7 @@
                 </span>
                 <span id=answerptv style="display:none">
                 </span>
-                <span type="checkbox" id="canuseranswer" style="display:none">
+                <span id="cannotuseranswer" style="display:none">
                 </span>
 
                 <div class="txt1 p-b-30">
@@ -49,7 +49,7 @@
                     Pergunta em inglês
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-36">
+                <div class="wrap-input100 m-b-36">
                     <label for="questionen"></label>
                     <textarea readonly class="input100 height-100" id="questionen" type="text"> </textarea>
                     <span class="focus-input100"></span>
@@ -59,7 +59,7 @@
                     Resposta em inglês
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-36">
+                <div class="wrap-input100 m-b-36">
                     <label for="answeren"></label>
                     <textarea readonly class="input100 height-100" id="answeren" type="text"></textarea>
                     <span class="focus-input100"></span>
@@ -69,7 +69,7 @@
                     Pergunta em português
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-36">
+                <div class="wrap-input100 m-b-36">
                     <label for="questionpt"></label>
                     <textarea readonly class="input100 height-100" id="questionpt" type="text"></textarea>
                     <span class="focus-input100"></span>
@@ -79,7 +79,7 @@
                     Resposta em português
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-36">
+                <div class="wrap-input100 m-b-36">
                     <label for="answerpt"></label>
                     <textarea readonly class="input100 height-100" id="answerpt" type="text"></textarea>
                     <span class="focus-input100"></span>
@@ -89,13 +89,14 @@
                     Responda às duas perguntas abaixo
                 </div>
 
-                <div class="container">
+                <div id= "istexttopic" class="container">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary">
-                            <input type="radio" name="istexttopic" id="istexttopicSim" autocomplete="off"> Sim
+                            <input value = "true" type="radio" name="istexttopic" id="istexttopicSim" autocomplete="off"> Sim
                         </label>
                         <label class="btn btn-secondary">
-                            <input type="radio" name="istexttopic" id="istexttopicNao" autocomplete="off"> Não
+                            <input value = "false" type="radio" name="istexttopic" id="istexttopicNao" autocomplete="off"> Não
+                        </label>
                         </label>
                         <span class="txt1a p-l-40 p-t-14">
                             O resumo trata de tema relacionado à Amazônia Azul?
@@ -103,13 +104,13 @@
                     </div>
                 </div>
 
-                <div class="p-t-10 container">
+                <div id="canuseonlytextq" class="p-t-10 container">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary">
-                            <input type="radio" name="canuseonlytextq" id="canuseonlytextqSim" autocomplete="off"> Sim
+                            <input value = "true" type="radio" name="canuseonlytextq" id="canuseonlytextqSim" autocomplete="off"> Sim
                         </label>
                         <label class="btn btn-secondary">
-                            <input type="radio" name="canuseonlytextq" id="canuseonlytextqNao" autocomplete="off"> Não
+                            <input value = "false" type="radio" name="canuseonlytextq" id="canuseonlytextqNao" autocomplete="off"> Não
                         </label>
                         <span class="txt1a p-l-40 p-t-1">
                         A pergunta pode ser respondida apenas com as informações que estão explícitas no resumo?

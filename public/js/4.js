@@ -76,7 +76,7 @@
         const idqa = $("#idqa").text()
         const answeren = $("#answeren").val()
         const answerpt = $("#answerpt").val()
-        const canuseranswer = !$("#canuseranswer").is(":checked")
+        const cannotuseranswer = $("#cannotuseranswer").is(":checked")
 
         $.ajax({
             type: 'POST',
@@ -86,7 +86,7 @@
                 'idqa': idqa,
                 'answeren': answeren,
                 'answerpt': answerpt,
-                'canuseranswer': canuseranswer
+                'cannotuseranswer': cannotuseranswer
             },
             dataType: 'json',
             success: function (response) {
@@ -114,14 +114,14 @@
         });
     });
 
-    $('#canuseranswer').on("click", function () {
+    $('#cannotuseranswer').on("click", function () {
         hideValidate(input);
     });
 
 
     function validate(input) {
         const preenchido = $(input).val().trim() !== ''
-        const marcado =  $("#canuseranswer").is(":checked")
+        const marcado =  $("#cannotuseranswer").is(":checked")
         return preenchido !==marcado
     }
 
