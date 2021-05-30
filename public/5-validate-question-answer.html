@@ -19,7 +19,7 @@
         <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
             <form class="login100-form validate-form flex-sb flex-w">
                 <div class="login100-form-title p-b-32">
-                    Validação das perguntas e respostas
+                    Parte 2 - Qualificando o conjunto pergunta-resposta
                 </div>
 
                 <span id=idvalidate style="display:none">
@@ -34,17 +34,15 @@
                 </span>
 
                 <div class="txt1 p-b-30">
-                    PARTE 2 - QUALIFIQUE O CONJUNTO PERGUNTA-RESPOSTA SEGUNDO ALGUNS CRITÉRIOS
+                    Abaixo são apresentados o resumo e um conjunto pergunta-resposta (em inglês e em português)
+                    associado a ele. Leia o resumo e o conjunto pergunta-resposta com atenção e, na sequência, avalie a
+                    qualidade do conjunto pergunta-resposta.
                 </div>
 
                 <div class="txt1 p-b-10" id=title>
                 </div>
 
-                <div class="txt4" id=abstract>
-                </div>
-
-                <div class="txt1 p-b-40 p-t-20">
-                    ABAIXO É APRESENTADO O CONJUNTO PERGUNTA-RESPOSTA ORIGINAL.
+                <div class="txt4 p-b-20 p-t-10" id=abstract>
                 </div>
 
                 <div class="txt1 p-b-11">
@@ -87,23 +85,38 @@
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="txt1 p-b-40 p-t-20">
-                    RESPONDA ALGUMAS PERGUNTAS SOBRE A QUALIDADE DESSE CONJUNTO.
+                <div class="txt1 p-b-20 p-t-20">
+                    Responda às duas perguntas abaixo
                 </div>
-
                 <div class="form-check form-switch p-t-10 p-b-10 ">
-                    <label class="txt1a p-l-10" for="istexttopic">O texto trata do tema proposto na primeira fase
-                        ?</label>
+                    <label class="txt1a p-l-10" for="istexttopic">
+                        O resumo trata de tema relacionado à Amazônia Azul?
+                    </label>
                     <input class="form-check-input" type="checkbox" id="istexttopic">
                 </div>
 
+
+
+
                 <div class="form-check form-switch p-t-10 p-b-10 ">
-                    <label class="txt1a p-l-10" for="canuseonlytextq">A pergunta pode ser respondida apenas com as
-                        informações que estão explícitas no texto ?</label>
+                    <label class="txt1a p-l-10" for="canuseonlytextq">
+                        A pergunta pode ser respondida apenas com as informações que estão explícitas no resumo?
+                    </label>
                     <input class="form-check-input" type="checkbox" id="canuseonlytextq">
                 </div>
 
-                <span class="txt1a p-t-10">Avalie o quanto a pergunta faz sentido</span>
+                <div class="txt1 p-t-20">
+                    Avalie a qualidade do conjunto pergunta-resposta escolhendo uma quantidade de estrelas, sendo:
+                    <ul class="txt3">
+                        <li>1 estrela: Muito ruim</li>
+                        <li>2 estrelas: Ruim</li>
+                        <li>3 estrelas: Justa (ou Aceitável)</li>
+                        <li>4 estrelas: Boa</li>
+                        <li>5 estrelas: Muito boa</li>
+                    </ul>
+                </div>
+
+                <span class="txt1a p-t-10">A pergunta faz sentido</span>
                 <div id="makessenseq" class="star-rating">
                     <input type="radio" id="5-stars-makessenseq" name="makessenseq" value="5"/>
                     <label for="5-stars-makessenseq" class="star">&#9733;</label>
@@ -117,7 +130,7 @@
                     <label for="1-star-makessenseq" class="star">&#9733;</label>
                 </div>
 
-                <span class="txt1a p-t-10">Avalie o quanto a resposta faz sentido</span>
+                <span class="txt1a p-t-10">A resposta faz sentido</span>
                 <div id="makessensea" class="star-rating">
                     <input type="radio" id="5-stars-makessensea" name="makessensea" value="5"/>
                     <label for="5-stars-makessensea" class="star">&#9733;</label>
@@ -131,7 +144,7 @@
                     <label for="1-star-makessensea" class="star">&#9733;</label>
                 </div>
 
-                <span class="txt1a p-t-10">Avalie a qualidade da tradução</span>
+                <span class="txt1a p-t-10">Qualidade da tradução</span>
                 <div id="translationquality" class="star-rating">
                     <input type="radio" id="5-stars-translationquality" name="translationquality" value="5"/>
                     <label for="5-stars-translationquality" class="star">&#9733;</label>
@@ -161,12 +174,12 @@
                 </div>
 
                 <div class="txt1 p-b-20 p-t-40">
-                    Pressione o botão abaixo para concluir a validação desse conjunto pergunta-resposta.
+                    Pressione o botão abaixo para enviar suas respostas e continuar a tarefa. Você só conseguirá enviar suas respostas depois de responder todas as perguntas desta tela.
                 </div>
 
                 <div class="container-login100-form-btn p-l-88 p-r-88 p-t-10 p-b-10">
                     <button class="login100-form-btn" id="btnEnviar" type="button">
-                        Enviar validação
+                        Continuar validação
                     </button>
                 </div>
 
@@ -186,6 +199,6 @@
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!--===============================================================================================-->
-<script src="js/5.js"></script>
+<script src="js/5x.js"></script>
 
 </html>
