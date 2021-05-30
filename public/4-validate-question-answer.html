@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <title>Question-Answer Form</title>
+    <title>Validate Question-Answer Form</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <!--===============================================================================================-->
@@ -17,10 +17,10 @@
         <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
             <form class="login100-form validate-form flex-sb flex-w">
                 <div class="login100-form-title p-b-32">
-                    Preenchimento das perguntas e respostas
+                    Validação das perguntas e respostas
                 </div>
 
-                <div id=idarticle style="display:none">
+                <div id=idqa style="display:none">
                 </div>
 
                 <div class="txt1 p-b-10" id=title>
@@ -30,19 +30,16 @@
                 </div>
 
                 <div class="txt1 p-b-40 p-t-20">
-                    ESSA SERÁ A SUA PERGUNTA NÚMERO
-                    <span id=nquestions></span>
-                    <span id=ntotal>/ 2</span>
-                    <span>, REFERENTE A ESSE TEXTO.</span>
+                    TENTE AGORA RESPONDER À PERGUNTA ABAIXO, BASEANDO SUA RESPOSTA UNICAMENTE NO TEXTO APRESENTADO.
                 </div>
 
                 <div class="txt1 p-b-11">
                     Pergunta em inglês
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-36" data-validate="This field is required">
+                <div class="wrap-input100 validate-input m-b-36">
                     <label for="questionen"></label>
-                    <textarea class="input100 height-100" id="questionen" type="text"> </textarea>
+                    <textarea readonly class="input100 height-100" id="questionen" type="text"> </textarea>
                     <span class="focus-input100"></span>
                 </div>
 
@@ -50,7 +47,7 @@
                     Resposta em inglês
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-36" data-validate="This field is required">
+                <div class="wrap-input100 validate-input m-b-36" data-validate="Esse campo deve ser preenchido. Selecione 'Não consigo responder à pergunta' se tiver dificuldade no preenchimento">
                     <label for="answeren"></label>
                     <textarea class="input100 height-100" id="answeren" type="text"></textarea>
                     <span class="focus-input100"></span>
@@ -60,9 +57,9 @@
                     Pergunta em português
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-36" data-validate="This field is required">
+                <div class="wrap-input100 validate-input m-b-36">
                     <label for="questionpt"></label>
-                    <textarea class="input100 height-100" id="questionpt" type="text"></textarea>
+                    <textarea readonly class="input100 height-100" id="questionpt" type="text"></textarea>
                     <span class="focus-input100"></span>
                 </div>
 
@@ -70,19 +67,26 @@
                     Resposta em português
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-36" data-validate="This field is required">
+                <div class="wrap-input100 validate-input m-b-36" data-validate="Esse campo deve ser preenchido. Selecione 'Não consigo responder à pergunta' se tiver dificuldade no preenchimento">
                     <label for="answerpt"></label>
                     <textarea class="input100 height-100" id="answerpt" type="text"></textarea>
                     <span class="focus-input100"></span>
                 </div>
 
+                <div class="login100-form-title p-t-20 p-b-20 p-l-50">
+                    <input class="input-checkbox100" id="canuseranswer" name="agree" type="checkbox">
+                    <label class="label-checkbox100" for="canuseranswer">
+                        Não consigo responder à pergunta
+                    </label>
+                </div>
+
                 <div class="txt1 p-b-10 p-t-10">
-                    Pressione o botão abaixo para armazenar suas respostas
+                    Pressione o botão abaixo para continuar a validação desse conjunto pergunta-resposta.
                 </div>
 
                 <div class="container-login100-form-btn p-l-88 p-r-88 p-t-5 p-b-5">
                     <button class="login100-form-btn" id="btnEnviar" type="button">
-                        Enviar respostas
+                        Continuar validação
                     </button>
                 </div>
 
@@ -101,6 +105,6 @@
 <!--===============================================================================================-->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-<script src="js/5.js"></script>
+<script src="js/4.js"></script>
 
 </html>

@@ -65,7 +65,6 @@ app.get('/question-answer/validate/', async (req, res) => {
         const {iduser} = req.query;
         const query = `
             SELECT q.idqa,
-                   q.iduser,
                    a.title,
                    a.abstract,
                    q.questionen,
