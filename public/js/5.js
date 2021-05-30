@@ -18,17 +18,27 @@
                         abstract,
                         questionen,
                         questionpt,
+                        answerenv,
+                        answerptv,
+                        canuseranswer,
                         answeren,
                         answerpt
                     } = response.rows[0];
                     $("#idvalidate").empty().append(idvalidate);
                     $("#idqa").empty().append(idqa);
+
+                    $("#answerenv").empty().append(answerenv);
+                    $("#answerptv").empty().append(answerptv);
+                    $("#canuseranswer").empty().append(canuseranswer);
+
                     $("#title").empty().append(title);
                     $("#abstract").empty().append(abstract);
+
                     $("#questionen").empty().append(questionen);
                     $("#questionpt").empty().append(questionpt);
                     $("#answeren").empty().append(answeren);
                     $("#answerpt").empty().append(answerpt);
+
                 } else {
                     window.location.href = './4-validate-question-answer.html'
                 }
@@ -70,30 +80,50 @@
         }
 
         if (check) {
-            saveQA()
+            updateValidate()
         }
         return check;
 
     });
 
-    function saveQA() {
+    function updateValidate() {
+        const idvalidate = $("#idvalidate").text();
         const iduser = testUser();
-        const idarticle = $("#idarticle").text()
-        const questionen = $("#questionen").val()
-        const answeren = $("#answeren").val()
-        const questionpt = $("#questionpt").val()
-        const answerpt = $("#answerpt").val()
+        const idqa = $("#idqa").text();
+
+        const answerenv = $("#answerenv").text();
+        const answerptv = $("#answerptv").text();
+        const canuseranswer = $("#canuseranswer").text();
+
+        const istexttopic = $("#istexttopic").text();
+
+        const makessenseq = $("#makessenseq").text();
+        const canuseonlytextq = $("#canuseonlytextq").text();
+        const typeq = $("#typeq").text();
+
+        const makesensea = $("#makesensea").text();
+
+        const translationquality = $("#translationquality").text();
 
         $.ajax({
-            type: 'POST',
-            url: '/question-answer/',
+            type: 'PUT',
+            url: '/validate/',
             data: {
+                'idvalidate': idvalidate,
                 'iduser': iduser,
-                'idarticle': idarticle,
-                'questionen': questionen,
-                'answeren': answeren,
-                'questionpt': questionpt,
-                'answerpt': answerpt
+                'idqa': idqa,
+
+                'answeren': answerenv,
+                'answerpt': answerptv,
+                'canuseranswer': canuseranswer,
+
+                'istexttopic' : istexttopic,
+                'makessenseq' : makessenseq,
+                'makesensea' : makesensea,
+                'translationquality' : translationquality,
+                'canuseonlytextq' : canuseonlytextq,
+                'typeq' : typeq
+
             },
             dataType: 'json',
             success: function (response) {

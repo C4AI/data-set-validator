@@ -8,6 +8,7 @@
     <!--===============================================================================================-->
     <link href="css/util.css" rel="stylesheet" type="text/css">
     <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!--===============================================================================================-->
 </head>
 
@@ -20,11 +21,16 @@
                     Validação das perguntas e respostas
                 </div>
 
-                <div id=idqa style="display:none">
-                </div>
-
-                <div id=idvalidate style="display:none">
-                </div>
+                <span id=idvalidate style="display:none">
+                </span>
+                <span id=idqa style="display:none">
+                </span>
+                <span id=answerenv style="display:none">
+                </span>
+                <span id=answerptv style="display:none">
+                </span>
+                <span id=canuseranswer style="display:none">
+                </span>
 
                 <div class="txt1 p-b-30">
                     PARTE 2 - QUALIFIQUE O CONJUNTO PERGUNTA-RESPOSTA SEGUNDO ALGUNS CRITÉRIOS
@@ -81,6 +87,19 @@
                     <span class="focus-input100"></span>
                 </div>
 
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Default radio
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Default checked radio
+                    </label>
+                </div>
+
                 <div class="txt1 p-b-10 p-t-10">
                     Pressione o botão abaixo para concluir a validação desse conjunto pergunta-resposta.
                 </div>
@@ -105,6 +124,8 @@
 </body>
 <!--===============================================================================================-->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/bootstrap/js/popper.min.js"></script>
 <!--===============================================================================================-->
 <script src="js/5.js"></script>
 

@@ -106,6 +106,11 @@ app.get('/validate', async (req, res) => {
                    v.idqa,
                    a.title,
                    a.abstract,
+
+                   v.answeren as answerenv ,
+                   v.answerpt as answerptv,
+                   v.canuseranswer,
+                   
                    q.questionen,
                    q.questionpt,
                    q.answeren,
@@ -162,9 +167,9 @@ app.get('/validate/one', async (req, res) => {
         const query = `
             SELECT v.idvalidate,
                    v.idqa,
-                   v.iduser,
                    a.title,
                    a.abstract,
+                   
                    q.questionen,
                    q.questionpt,
                    q.answeren,
