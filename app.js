@@ -104,11 +104,8 @@ app.get('/validate', async (req, res) => {
         const query = `
             SELECT v.idvalidate,
                    v.idqa,
-                   v.iduser,
                    a.title,
                    a.abstract,
-                   v.answeren,
-                   v.answerpt,                   
                    q.questionen,
                    q.questionpt,
                    q.answeren,
