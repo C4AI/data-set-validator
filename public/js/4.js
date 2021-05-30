@@ -10,7 +10,7 @@
             tryCount: 0,
             retryLimit: 3,
             success: function (response) {
-                if (response.rows.length===1) {
+                if (response.rows.length === 1) {
                     const {
                         idqa,
                         title,
@@ -25,7 +25,7 @@
                     $("#questionen").empty().append(questionen);
                     $("#questionpt").empty().append(questionpt);
                 } else {
-                  window.location.href = './5-validate-question-answer.html'
+                    window.location.href = './5-validate-question-answer.html'
                 }
             },
             error: function (jqXHR, xhr, textStatus, errorThrown) {
@@ -115,14 +115,14 @@
     });
 
     $('#canuseranswer').on("click", function () {
-        hideValidate('.validate-form .input100');
+        hideValidate(input);
     });
 
 
     function validate(input) {
-        if ($(input).val().trim() === '' && (!$("#canuseranswer").is(":checked"))) {
-            return false;
-        }
+        const preenchido = $(input).val().trim() !== ''
+        const marcado =  $("#canuseranswer").is(":checked")
+        return preenchido !==marcado
     }
 
     function showValidate(input) {
