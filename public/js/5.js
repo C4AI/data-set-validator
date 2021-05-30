@@ -84,6 +84,9 @@
                 check = false;
             }
         });
+        $("option:selected:disabled").each(function () {
+            check = false;
+        });
 
         if (!check) {
             alert('Por favor, você somente poderá enviar suas respostas depois de responder todas as perguntas desta tela.');
