@@ -30,7 +30,7 @@
 
                     $("#answerenv").empty().append(answerenv);
                     $("#answerptv").empty().append(answerptv);
-                    $("#canuseranswer").empty().append(canuseranswer);
+                    $("#canuseranswer").prop('checked', canuseranswer);
 
                     $("#title").empty().append(title);
                     $("#abstract").empty().append(abstract);
@@ -94,7 +94,7 @@
 
         const answerenv = $("#answerenv").text();
         const answerptv = $("#answerptv").text();
-        const canuseranswer = $("#canuseranswer").text();
+        const canuseranswer = $("#canuseranswer").is(":checked")
 
         const istexttopic = $("#istexttopic").is(":checked")
         const canuseonlytextq = $("#canuseonlytextq").is(":checked")
