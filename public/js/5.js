@@ -96,16 +96,14 @@
         const answerptv = $("#answerptv").text();
         const canuseranswer = $("#canuseranswer").text();
 
-        const istexttopic = $("#istexttopic").text();
+        const istexttopic = $("#istexttopic").is(":checked")
+        const canuseonlytextq = $("#canuseonlytextq").is(":checked")
 
-        const makessenseq = $("#makessenseq").text();
-        const canuseonlytextq = $("#canuseonlytextq").text();
-        const typeq = $("#typeq").text();
-
-        const makesensea = $("#makesensea").text();
-
+        const makessenseq = $("#makessenseq input[type='radio']:checked").val();
+        const makessensea = $("#makessensea input[type='radio']:checked").val();
         const translationquality = $("#translationquality input[type='radio']:checked").val();
 
+        const typeq = $("#typeq option:selected").text()
 
         $.ajax({
             type: 'PUT',
@@ -119,12 +117,12 @@
                 'answerpt': answerptv,
                 'canuseranswer': canuseranswer,
 
-                'istexttopic' : istexttopic,
-                'makessenseq' : makessenseq,
-                'makesensea' : makesensea,
-                'translationquality' : translationquality,
-                'canuseonlytextq' : canuseonlytextq,
-                'typeq' : typeq
+                'istexttopic': istexttopic,
+                'makessenseq': makessenseq,
+                'makessensea': makessensea,
+                'translationquality': translationquality,
+                'canuseonlytextq': canuseonlytextq,
+                'typeq': typeq
 
             },
             dataType: 'json',
@@ -154,14 +152,8 @@
     });
 
     function validate(input) {
-        if ($(input).attr('type') === 'email' || $(input).attr('name') === 'email') {
-            if ($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                return false;
-            }
-        } else {
-            if ($(input).val().trim() === '') {
-                return false;
-            }
+        if ($(input).val().trim() === '') {
+            return false;
         }
     }
 

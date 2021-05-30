@@ -180,7 +180,7 @@ app.get('/validate/one', async (req, res) => {
                    v.canuseranswer,
                    v.istexttopic,
                    v.makessenseq,
-                   v.makesensea,
+                   v.makessensea,
                    v.translationquality,
                    v.canuseonlytextq,
                    v.typeq
@@ -253,25 +253,22 @@ app.put('/validate', async (req, res) => {
     const client = await pool.connect();
     try {
         const {idvalidate, iduser, idqa, answeren, answerpt, canuseranswer, istexttopic, makessenseq,
-            makesensea, translationquality, canuseonlytextq, typeq } = req.body;
+            makessensea, translationquality, canuseonlytextq, typeq } = req.body;
         const query1 = `
             INSERT INTO validate(date, idvalidate, iduser, idqa, answeren, answerpt, canuseranswer, istexttopic, makessenseq,
-                                 makesensea, translationquality, canuseonlytextq, typeq, iscomplete)
+                                 makessensea, translationquality, canuseonlytextq, typeq, iscomplete)
             VALUES ((SELECT CURRENT_DATE), $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, TRUE)
-            ON CONFLICT (idvalidate, iduser, idqa) DO UPDATE SET (date,answeren, answerpt, canuseranswer, istexttopic, makessenseq,makesensea, 
+            ON CONFLICT (idvalidate) DO UPDATE SET (date,answeren, answerpt, canuseranswer, istexttopic, makessenseq,makessensea, 
                                                                   translationquality, canuseonlytextq, typeq, iscomplete)=
                 
                                                  (
                                                   EXCLUDED.date,EXCLUDED.answeren,EXCLUDED.answerpt,EXCLUDED.canuseranswer,EXCLUDED.istexttopic,
-                                                  EXCLUDED.makessenseq,EXCLUDED.makesensea,EXCLUDED.translationquality,EXCLUDED.canuseonlytextq,
+                                                  EXCLUDED.makessenseq,EXCLUDED.makessensea,EXCLUDED.translationquality,EXCLUDED.canuseonlytextq,
                                                   EXCLUDED.typeq,EXCLUDED.iscomplete
-                                                 )
-            WHERE validate.iduser = $4
-              and validate.idqa = $5;`
-
+                                                 );`
         const result = await client
             .query(query1,[idvalidate, iduser, idqa, answeren, answerpt, canuseranswer, istexttopic, makessenseq,
-                makesensea, translationquality, canuseonlytextq, typeq ]);
+                makessensea, translationquality, canuseonlytextq, typeq ]);
 
         res.send(JSON.stringify(result));
 
