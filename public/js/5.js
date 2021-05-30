@@ -65,28 +65,31 @@
             }
         });
     });
+
 //////////////////////////////////////////////////////////////////////////////////
 
-    /*==================================================================
-  [ Validate ]*/
-    var input = $('.validate-input .input100');
 
     $('#btnEnviar').on("click", function () {
+        if (validate())
+            updateValidate()
+    });
+
+    function validate() {
+
         var check = true;
 
-        for (var i = 0; i < input.length; i++) {
-            if (validate(input[i]) === false) {
-                showValidate(input[i]);
+        $("input:radio").each(function () {
+            var name = $(this).attr("name");
+            if ($("input:radio[name=" + name + "]:checked").length === 0) {
                 check = false;
             }
-        }
+        });
 
-        if (check) {
-            updateValidate()
+        if (!check) {
+            alert('Por favor, você somente poderá enviar suas respostas depois de responder todas as perguntas desta tela.');
         }
         return check;
-
-    });
+    }
 
     function updateValidate() {
         const idvalidate = $("#idvalidate").text();
@@ -95,15 +98,15 @@
 
         const answerenv = $("#answerenv").text();
         const answerptv = $("#answerptv").text();
-        const cannotuseranswer = Boolean ($("#cannotuseranswer").text());
+        const cannotuseranswer = Boolean($("#cannotuseranswer").text());
+
+        /*validando*/
 
         const istexttopic = $("#istexttopic input[type='radio']:checked").val();
         const canuseonlytextq = $("#canuseonlytextq input[type='radio']:checked").val();
-
         const makessenseq = $("#makessenseq input[type='radio']:checked").val();
         const makessensea = $("#makessensea input[type='radio']:checked").val();
         const translationquality = $("#translationquality input[type='radio']:checked").val();
-
         const typeq = $("#typeq option:selected").text()
 
         $.ajax({
@@ -144,30 +147,6 @@
             throw new Error('No user found');
         } else
             return iduser;
-    }
-
-    $('.validate-form .input100').each(function () {
-        $(this).focus(function () {
-            hideValidate(this);
-        });
-    });
-
-    function validate(input) {
-        if ($(input).val().trim() === '') {
-            return false;
-        }
-    }
-
-    function showValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).addClass('alert-validate');
-    }
-
-    function hideValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).removeClass('alert-validate');
     }
 
 })(jQuery);
