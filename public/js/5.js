@@ -1,5 +1,6 @@
 (function ($) {
     "use strict";
+
     $(window).one("load", function () {
         const iduser = testUser();
         $.ajax({
