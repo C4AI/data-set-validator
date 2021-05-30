@@ -103,7 +103,8 @@
 
         const makesensea = $("#makesensea").text();
 
-        const translationquality = $("#translationquality").text();
+        const translationquality = $("#translationquality input[type='radio']:checked").val();
+
 
         $.ajax({
             type: 'PUT',

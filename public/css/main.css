@@ -160,6 +160,14 @@ iframe {
   text-transform: uppercase;
 }
 
+.txt1a {
+  font-family: Raleway-SemiBold;
+  font-size: 13px;
+  color: #555555;
+  line-height: 1.4;
+  text-align: justify;
+}
+
 .txt2 {
   font-family: Raleway-Regular;
   font-size: 13px;
@@ -542,4 +550,34 @@ input[type=checkbox]
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+/* component */
+
+.star-rating {
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating input {
+  display:none;
+}
+
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+  color:#f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
 }

@@ -44,7 +44,6 @@
 
                 <div class="txt1 p-b-40 p-t-20">
                     ABAIXO É APRESENTADO O CONJUNTO PERGUNTA-RESPOSTA ORIGINAL.
-                    POR FAVOR, LEIA COM ATENÇÃO E EM SEGUIDA RESPONDA ALGUMAS PERGUNTAS SOBRE A QUALIDADE DESSE CONJUNTO.
                 </div>
 
                 <div class="txt1 p-b-11">
@@ -87,24 +86,73 @@
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Default radio
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Default checked radio
-                    </label>
+                <div class="txt1 p-b-40 p-t-20">
+                    RESPONDA ALGUMAS PERGUNTAS SOBRE A QUALIDADE DESSE CONJUNTO.
                 </div>
 
-                <div class="txt1 p-b-10 p-t-10">
+                <div class="form-check form-switch p-t-10 p-b-10 ">
+                    <label class="pull-right txt1a p-l-10" for="istexttopic">O texto trata do tema proposto na primeira fase ?</label>
+                    <input class="form-check-input" type="checkbox" id="istexttopic">
+                </div>
+                <span class="txt1a p-t-10">Avalie o quanto a pergunta faz sentido</span>
+                <div id="makessenseq" class="star-rating">
+                    <input type="radio" id="5-stars-makessenseq" name="makessenseq" value="5"/>
+                    <label for="5-stars-makessenseq" class="star">&#9733;</label>
+                    <input type="radio" id="4-stars-makessenseq" name="makessenseq" value="4"/>
+                    <label for="4-stars-makessenseq" class="star">&#9733;</label>
+                    <input type="radio" id="3-stars-makessenseq" name="makessenseq" value="3"/>
+                    <label for="3-stars-makessenseq" class="star">&#9733;</label>
+                    <input type="radio" id="2-stars-makessenseq" name="makessenseq" value="2"/>
+                    <label for="2-stars-makessenseq" class="star">&#9733;</label>
+                    <input type="radio" id="1-star-makessenseq" name="makessenseq" value="1"/>
+                    <label for="1-star-makessenseq" class="star">&#9733;</label>
+                </div>
+
+                <div class="form-check form-switch p-t-10 p-b-10 ">
+                    <label class="txt1a p-l-10" for="canuseonlytextq">A pergunta pode ser respondida apenas com as
+                        informações que estão explícitas no texto ?</label>
+                    <input class="form-check-input" type="checkbox" id="canuseonlytextq">
+                </div>
+
+                <div class="form-check form-switch p-t-10 p-b-10 ">
+                    <label class="txt1a p-l-10" for="typeq">Categorize a pergunta segundo o principal pronome
+                        interrogativo utilizado </label>
+                    <input class="form-check-input" type="checkbox" id="typeq">
+                </div>
+
+                <span class="txt1a p-t-10">Avalie o quanto a resposta faz sentido</span>
+                <div id="makessensea" class="star-rating">
+                    <input type="radio" id="5-stars-makessensea" name="makessensea" value="5"/>
+                    <label for="5-stars-makessensea" class="star">&#9733;</label>
+                    <input type="radio" id="4-stars-makessensea" name="makessensea" value="4"/>
+                    <label for="4-stars-makessensea" class="star">&#9733;</label>
+                    <input type="radio" id="3-stars-makessensea" name="makessensea" value="3"/>
+                    <label for="3-stars-makessensea" class="star">&#9733;</label>
+                    <input type="radio" id="2-stars-makessensea" name="makessensea" value="2"/>
+                    <label for="2-stars-makessensea" class="star">&#9733;</label>
+                    <input type="radio" id="1-star-makessensea" name="makessensea" value="1"/>
+                    <label for="1-star-makessensea" class="star">&#9733;</label>
+                </div>
+
+                <span class="txt1a p-t-10">Avalie a qualidade da tradução</span>
+                <div id="translationquality" class="star-rating">
+                    <input type="radio" id="5-stars-translationquality" name="translationquality" value="5" />
+                    <label for="5-stars-translationquality" class="star">&#9733;</label>
+                    <input type="radio" id="4-stars-translationquality" name="translationquality" value="4"/>
+                    <label for="4-stars-translationquality" class="star">&#9733;</label>
+                    <input type="radio" id="3-stars-translationquality" name="translationquality" value="3"/>
+                    <label for="3-stars-translationquality" class="star">&#9733;</label>
+                    <input type="radio" id="2-stars-translationquality" name="translationquality" value="2"/>
+                    <label for="2-stars-translationquality" class="star">&#9733;</label>
+                    <input type="radio" id="1-star-translationquality" name="translationquality" value="1"/>
+                    <label for="1-star-translationquality" class="star">&#9733;</label>
+                </div>
+
+                <div class="txt1 p-b-20 p-t-40">
                     Pressione o botão abaixo para concluir a validação desse conjunto pergunta-resposta.
                 </div>
 
-                <div class="container-login100-form-btn p-l-88 p-r-88 p-t-5 p-b-5">
+                <div class="container-login100-form-btn p-l-88 p-r-88 p-t-10 p-b-10">
                     <button class="login100-form-btn" id="btnEnviar" type="button">
                         Enviar validação
                     </button>
@@ -124,8 +172,8 @@
 </body>
 <!--===============================================================================================-->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/bootstrap/js/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 <!--===============================================================================================-->
 <script src="js/5.js"></script>
 
