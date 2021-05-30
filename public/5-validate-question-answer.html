@@ -88,24 +88,36 @@
                 <div class="txt1 p-b-20 p-t-20">
                     Responda às duas perguntas abaixo
                 </div>
-                <div class="form-check form-switch p-t-10 p-b-10 ">
-                    <label class="txt1a p-l-10" for="istexttopic">
-                        O resumo trata de tema relacionado à Amazônia Azul?
-                    </label>
-                    <input class="form-check-input" type="checkbox" id="istexttopic">
+
+                <div class="container">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="istexttopic" id="istexttopicSim" autocomplete="off"> Sim
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="istexttopic" id="istexttopicNao" autocomplete="off"> Não
+                        </label>
+                        <span class="txt1a p-l-40 p-t-14">
+                            O resumo trata de tema relacionado à Amazônia Azul?
+                        </span>
+                    </div>
                 </div>
 
-
-
-
-                <div class="form-check form-switch p-t-10 p-b-10 ">
-                    <label class="txt1a p-l-10" for="canuseonlytextq">
+                <div class="p-t-10 container">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="canuseonlytextq" id="canuseonlytextqSim" autocomplete="off"> Sim
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="canuseonlytextq" id="canuseonlytextqNao" autocomplete="off"> Não
+                        </label>
+                        <span class="txt1a p-l-40 p-t-1">
                         A pergunta pode ser respondida apenas com as informações que estão explícitas no resumo?
-                    </label>
-                    <input class="form-check-input" type="checkbox" id="canuseonlytextq">
+                        </span>
+                    </div>
                 </div>
 
-                <div class="txt1 p-t-20">
+                <div class="txt1 p-t-40">
                     Avalie a qualidade do conjunto pergunta-resposta escolhendo uma quantidade de estrelas, sendo:
                     <ul class="txt3">
                         <li>1 estrela: Muito ruim</li>
@@ -199,6 +211,6 @@
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!--===============================================================================================-->
-<script src="js/5x.js"></script>
+<script src="js/5.js"></script>
 
 </html>
