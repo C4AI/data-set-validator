@@ -4,7 +4,7 @@
         const iduser = testUser();
         $.ajax({
             type: 'GET',
-            url: '/question-answer/validate/',
+            url: '/validate',
             data: {'iduser': iduser},
             dataType: 'json',
             tryCount: 0,
@@ -12,20 +12,31 @@
             success: function (response) {
                 if (response.rows.length === 1) {
                     const {
+                        idvalidate,
                         idqa,
                         title,
                         abstract,
                         questionen,
-                        questionpt
+                        questionpt,
+                        answerenv,
+                        answerptv,
+                        cannotuseranswer,
                     } = response.rows[0];
-
+                    $("#idvalidate").empty().append(idvalidate);
                     $("#idqa").empty().append(idqa);
+
+                    $("#answerenv").empty().append(answerenv);
+                    $("#answerptv").empty().append(answerptv);
+                    $("#cannotuseranswer").empty().append(cannotuseranswer);
+
                     $("#title").empty().append(title);
                     $("#abstract").empty().append(abstract);
+
                     $("#questionen").empty().append(questionen);
                     $("#questionpt").empty().append(questionpt);
+
                 } else {
-                    window.location.href = './4.3-validate-question-answer.html'
+                    window.location.href = './4.1-validate-answer.html'
                 }
             },
             error: function (jqXHR, xhr, textStatus, errorThrown) {
@@ -65,32 +76,47 @@
         }
 
         if (check) {
-            saveValidate()
+            updateValidate()
         }
         return check;
 
     });
 
-    function saveValidate() {
+    function updateValidate() {
+        const idvalidate = $("#idvalidate").text();
         const iduser = testUser();
-        const idqa = $("#idqa").text()
-        const answeren = $("#answeren").val()
-        const answerpt = $("#answerpt").val()
-        const cannotuseranswer = $("#cannotuseranswer").is(":checked")
+        const idqa = $("#idqa").text();
+
+        const answerenv = $("#answerenv").text();
+        const answerptv = $("#answerptv").text();
+        const cannotuseranswer = Boolean($("#cannotuseranswer").text());
+
+        /*validando*/
+
+        const questionenv = $("#questionenv").text();
+        const questionptv = $("#questionptv").text();
+        const cannotuserparaphase = Boolean($("#cannotuserparaphase").text());
 
         $.ajax({
-            type: 'POST',
+            type: 'PUT',
             url: '/validate/',
             data: {
+                'idvalidate': idvalidate,
                 'iduser': iduser,
                 'idqa': idqa,
-                'answeren': answeren,
-                'answerpt': answerpt,
-                'cannotuseranswer': cannotuseranswer
+
+                'answeren': answerenv,
+                'answerpt': answerptv,
+                'cannotuseranswer': cannotuseranswer,
+
+                'questionenv': questionenv,
+                'questionptv': questionptv,
+                'cannotuserparaphase': cannotuserparaphase
+
             },
             dataType: 'json',
             success: function (response) {
-                window.location.href = './4.3-validate-question-answer.html'
+                window.location.href = './5-user.html'
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
@@ -121,8 +147,8 @@
 
     function validate(input) {
         const preenchido = $(input).val().trim() !== ''
-        const marcado =  $("#cannotuseranswer").is(":checked")
-        return preenchido !==marcado
+        const marcado = $("#cannotuserparaphase").is(":checked")
+        return preenchido !== marcado
     }
 
     function showValidate(input) {

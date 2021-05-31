@@ -20,14 +20,23 @@
                     Parte 2 - Reescrevendo uma pergunta
                 </div>
 
-                <div id=idqa style="display:none">
-                </div>
+                <span id=idvalidate style="display:none">
+                </span>
+                <span id=idqa style="display:none">
+                </span>
+                <span id=answerenv style="display:none">
+                </span>
+                <span id=answerptv style="display:none">
+                </span>
+                <span id="cannotuseranswer" style="display:none">
+                </span>
 
                 <div class="txt1 p-b-40 p-t-15">
                     Abaixo são apresentados o resumo e uma pergunta (em inglês e em português).
                     Leia novamente o resumo e a pergunta e tente parafrasear a pergunta, ou seja,
                     reescrever a pergunta com outras palavras, mas mantendo o seu sentido original.
                     Busque utilizar sinônimos e outras palavras, continue se baseando no resumo.
+                    Não altere apenas a ordem dos elementos na pergunta.
                 </div>
 
                 <div class="txt1 p-b-10" id=title>
@@ -51,9 +60,9 @@
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-36"
-                     data-validate="Se você não consegue responder à pergunta, marque a opção abaixo. ATENÇÃO: Para marcar essa opção, as caixas de texto das respostas devem estar vazias.">
-                    <label for="answeren"></label>
-                    <textarea class="input100 height-100" id="answeren" type="text"></textarea>
+                     data-validate="Se você não consegue parafraser à pergunta, marque a opção abaixo. ATENÇÃO: Para marcar essa opção, as caixas de texto das respostas devem estar vazias.">
+                    <label for="questionenv"></label>
+                    <textarea class="input100 height-100" id="questionenv" type="text"></textarea>
                     <span class="focus-input100"></span>
                 </div>
 
@@ -72,21 +81,21 @@
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-36"
-                     data-validate="Se você não consegue responder à pergunta, marque a opção abaixo. ATENÇÃO: Para marcar essa opção, as caixas de texto das respostas devem estar vazias.">
-                    <label for="answerpt"></label>
-                    <textarea class="input100 height-100" id="answerpt" type="text"></textarea>
+                     data-validate="Se você não consegue parafrasear à pergunta, marque a opção abaixo. ATENÇÃO: Para marcar essa opção, as caixas de texto das respostas devem estar vazias.">
+                    <label for="questionptv"></label>
+                    <textarea class="input100 height-100" id="questionptv" type="text"></textarea>
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="txt1 p-b-30 p-t-15">
-                    Se você não consegue responder à pergunta, marque a opção abaixo. ATENÇÃO: Para marcar essa opção,
+                    Se você não consegue parafrasear a pergunta, marque a opção abaixo. ATENÇÃO: Para marcar essa opção,
                     as caixas de texto das respostas devem estar vazias.
                 </div>
 
                 <div class="login100-form-title p-b-20 p-l-50">
-                    <input class="input-checkbox100" id="cannotuseranswer" name="agree" type="checkbox">
-                    <label class="label-checkbox100" for="cannotuseranswer">
-                        Não consigo responder à pergunta
+                    <input class="input-checkbox100" id="cannotuserparaphase" name="agree" type="checkbox">
+                    <label class="label-checkbox100" for="cannotuserparaphase">
+                        Não consigo parafrasear a pergunta
                     </label>
                 </div>
 
