@@ -118,7 +118,7 @@
       },
       dataType: 'json',
       success: function (response) {
-        window.location.href = './6-user.html'
+        window.location.href = './5-user.html'
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus, errorThrown);

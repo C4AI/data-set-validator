@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Validate Question-Answer Form</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!--===============================================================================================-->
+    <link href="css/util.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+</head>
+
+<body id="bQA">
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+            <form class="login100-form validate-form flex-sb flex-w">
+                <div class="login100-form-title p-b-32">
+                    Parte 2 - Reescrevendo uma pergunta
+                </div>
+
+                <div id=idqa style="display:none">
+                </div>
+
+                <div class="txt1 p-b-40 p-t-15">
+                    Abaixo são apresentados o resumo e uma pergunta (em inglês e em português).
+                    Leia novamente o resumo e a pergunta e tente parafrasear a pergunta, ou seja,
+                    reescrever a pergunta com outras palavras, mas mantendo o seu sentido original.
+                    Busque utilizar sinônimos e outras palavras, continue se baseando no resumo.
+                </div>
+
+                <div class="txt1 p-b-10" id=title>
+                </div>
+
+                <div class="txt4 p-b-20 p-t-10" id=abstract>
+                </div>
+
+                <div class="txt1 p-b-11">
+                    Pergunta em inglês
+                </div>
+
+                <div class="wrap-input100 m-b-36">
+                    <label for="questionen"></label>
+                    <textarea readonly class="input100 height-100" id="questionen" type="text"> </textarea>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="txt1 p-b-11">
+                    Forneça uma paráfrase da pergunta em inglês
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-36"
+                     data-validate="Se você não consegue responder à pergunta, marque a opção abaixo. ATENÇÃO: Para marcar essa opção, as caixas de texto das respostas devem estar vazias.">
+                    <label for="answeren"></label>
+                    <textarea class="input100 height-100" id="answeren" type="text"></textarea>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="txt1 p-b-11">
+                    Pergunta em português
+                </div>
+
+                <div class="wrap-input100 m-b-36">
+                    <label for="questionpt"></label>
+                    <textarea readonly class="input100 height-100" id="questionpt" type="text"></textarea>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="txt1 p-b-11">
+                    Forneça uma paráfrase da pergunta em português
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-36"
+                     data-validate="Se você não consegue responder à pergunta, marque a opção abaixo. ATENÇÃO: Para marcar essa opção, as caixas de texto das respostas devem estar vazias.">
+                    <label for="answerpt"></label>
+                    <textarea class="input100 height-100" id="answerpt" type="text"></textarea>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="txt1 p-b-30 p-t-15">
+                    Se você não consegue responder à pergunta, marque a opção abaixo. ATENÇÃO: Para marcar essa opção,
+                    as caixas de texto das respostas devem estar vazias.
+                </div>
+
+                <div class="login100-form-title p-b-20 p-l-50">
+                    <input class="input-checkbox100" id="cannotuseranswer" name="agree" type="checkbox">
+                    <label class="label-checkbox100" for="cannotuseranswer">
+                        Não consigo responder à pergunta
+                    </label>
+                </div>
+
+                <div class="txt1 p-b-10 p-t-10">
+                    Pressione o botão abaixo para enviar suas respostas e continuar a tarefa.
+                </div>
+
+                <div class="container-login100-form-btn p-l-88 p-r-88 p-t-5 p-b-5">
+                    <button class="login100-form-btn" id="btnEnviar" type="button">
+                        Continuar validação
+                    </button>
+                </div>
+
+                <div class="flex-sb-m w-full p-b-30 p-t-30">
+                    <a class="txt3" href="3.2-instructions-lite.html" target="_blank">
+                        Acesse novamente as instruções se tiver alguma dúvida.
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+<!--===============================================================================================-->
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="js/4.2.js"></script>
+
+</html>

@@ -1,49 +1,124 @@
 (function ($) {
     "use strict";
-
+    const score = 8;
+    $(document).ready(function() {
+        $('.select').select2({ width: '100%' });
+    });
     $(window).one("load", function () {
         const iduser = testUser();
         $.ajax({
             type: 'GET',
-            url: '/validate',
+            url: '/user/review',
             data: {'iduser': iduser},
             dataType: 'json',
             tryCount: 0,
             retryLimit: 3,
             success: function (response) {
-                if (response.rows.length === 1) {
-                    const {
-                        idvalidate,
-                        idqa,
-                        title,
-                        abstract,
-                        questionen,
-                        questionpt,
-                        answerenv,
-                        answerptv,
-                        cannotuseranswer,
-                        answeren,
-                        answerpt
-                    } = response.rows[0];
-                    $("#idvalidate").empty().append(idvalidate);
-                    $("#idqa").empty().append(idqa);
+                const {
+                    email,
+                    sumview,
+                    sumskip,
+                    sumreject,
+                    sumanswer,
+                    sumscore
+                } = response.rows[0];
 
-                    $("#answerenv").empty().append(answerenv);
-                    $("#answerptv").empty().append(answerptv);
+                $("#iduser").empty().append(iduser);
+                $("#email").empty().append(email);
+                $("#sumview").empty().append(sumview);
+                $("#sumskip").empty().append(sumskip);
+                $("#sumreject").empty().append(sumreject);
+                $("#sumanswer").empty().append(sumanswer);
+                $("#sumscore").empty().append(sumscore);
+                $("#score").empty().append(" / " + score);
 
-                    $("#cannotuseranswer").empty().append(cannotuseranswer);
-
-                    $("#title").empty().append(title);
-                    $("#abstract").empty().append(abstract);
-
-                    $("#questionen").empty().append(questionen);
-                    $("#questionpt").empty().append(questionpt);
-                    $("#answeren").empty().append(answeren);
-                    $("#answerpt").empty().append(answerpt);
+            },
+            error: function (jqXHR, xhr, textStatus, errorThrown) {
+                if (textStatus !== '') {
+                    this.tryCount++;
+                    if (this.tryCount <= this.retryLimit) {
+                        //try again
+                        $.ajax(this);
+                        return;
+                    }
+                    return;
+                }
+                if (xhr.status === 500) {
+                    //handle error
+                    console.log(textStatus, errorThrown);
 
                 } else {
-                    window.location.href = './4-validate-question-answer.html'
+                    console.log(textStatus, errorThrown);
                 }
+            }
+        });
+
+        $.ajax({
+            type: 'GET',
+            url: '/question-answer/article/all',
+            data: {'iduser': iduser},
+            dataType: 'json',
+            tryCount: 0,
+            retryLimit: 3,
+            success: function (response) {
+                $('#idarticle').empty();
+                $.each(response.rows, function (index, element) {
+                    $('#idarticle').append($('<option/>', {
+                        value: element.idarticle,
+                        text: element.title
+                    }));
+                });
+                $('#idarticle').trigger("change");
+            },
+            error: function (jqXHR, xhr, textStatus, errorThrown) {
+                if (textStatus !== '') {
+                    this.tryCount++;
+                    if (this.tryCount <= this.retryLimit) {
+                        //try again
+                        $.ajax(this);
+                        return;
+                    }
+                    return;
+                }
+                if (xhr.status === 500) {
+                    //handle error
+                    console.log(textStatus, errorThrown);
+
+                } else {
+                    console.log(textStatus, errorThrown);
+                }
+            }
+        });
+
+    });
+
+    $(window).ajaxComplete(function () {
+        const sumscore = parseInt($("#sumscore").text());
+        if (sumscore >= score) {
+            $("#btnContinuar").empty().append("Finalizar tarefa");
+        }
+    });
+
+    $('#idarticle').on("change", function () {
+        const iduser = testUser();
+
+        $.ajax({
+            type: 'GET',
+            url: '/question-answer/article',
+            data: {'iduser': iduser, 'idarticle': this.value},
+            dataType: 'json',
+            tryCount: 0,
+            retryLimit: 3,
+            success: function (response) {
+
+                $('#idqa').empty();
+                $.each(response.rows, function (index, element) {
+                    $('#idqa').append($('<option/>', {
+                        value: element.idqa,
+                        text: element.questionen
+                    }));
+                });
+
             },
             error: function (jqXHR, xhr, textStatus, errorThrown) {
                 if (textStatus !== '') {
@@ -66,78 +141,81 @@
         });
     });
 
-//////////////////////////////////////////////////////////////////////////////////
+    $('#btnEdit').on("click", function () {
 
+        const idarticle = $("#idarticle").val()
+        const idqa = $("#idqa").val()
 
-    $('#btnEnviar').on("click", function () {
-        if (validate())
-            updateValidate()
+        if (idarticle != null &&
+            idqa != null &&
+            idarticle.length > 0 &&
+            idqa.length > 0
+        ) {
+            window.location.href =
+                "7-question-answer-edit.html?idarticle=" + idarticle + "&idqa=" + idqa;
+        } else {
+            window.alert("Não há perguntas para edição.")
+        }
     });
 
-    function validate() {
+    $('#btnDelete').on("click", function () {
 
-        var check = true;
+        const title = $("#idarticle option:selected").text()
+        const qa = $("#idqa option:selected").text()
 
-        $("input:radio").each(function () {
-            var name = $(this).attr("name");
-            if ($("input:radio[name=" + name + "]:checked").length === 0) {
-                check = false;
+        const idartitle = $("#idarticle").val()
+        const idqa = $("#idqa").val()
+
+        if (idarticle != null &&
+            idqa != null &&
+            idarticle.length > 0 &&
+            idqa.length > 0
+        ) {
+            if (window.confirm(
+                "Confirma a remoção da pergunta "
+                + '"' + qa + '"' +
+                " referente ao texto "
+                + '"' + title + '"' +
+                " ? Essa ação é irreversível."
+            )) {
+                deleteQA(idartitle, idqa);
             }
-        });
-        $("option:selected:disabled").each(function () {
-            check = false;
-        });
-
-        if (!check) {
-            alert('Por favor, você somente poderá enviar suas respostas depois de responder todas as perguntas desta tela.');
+        } else {
+            window.alert("Não há perguntas para exclusão.")
         }
-        return check;
-    }
 
-    function updateValidate() {
-        const idvalidate = $("#idvalidate").text();
+    });
+
+    function deleteQA(idarticle, idqa) {
         const iduser = testUser();
-        const idqa = $("#idqa").text();
-
-        const answerenv = $("#answerenv").text();
-        const answerptv = $("#answerptv").text();
-        const cannotuseranswer = Boolean($("#cannotuseranswer").text());
-
-        /*validando*/
-
-        const istexttopic = $("#istexttopic input[type='radio']:checked").val();
-        const canuseonlytextq = $("#canuseonlytextq input[type='radio']:checked").val();
-        const makessenseq = $("#makessenseq input[type='radio']:checked").val();
-        const makessensea = $("#makessensea input[type='radio']:checked").val();
-        const translationquality = $("#translationquality input[type='radio']:checked").val();
-        const typeq = $("#typeq option:selected").text()
-
         $.ajax({
-            type: 'PUT',
-            url: '/validate/',
-            data: {
-                'idvalidate': idvalidate,
-                'iduser': iduser,
-                'idqa': idqa,
-
-                'answeren': answerenv,
-                'answerpt': answerptv,
-                'cannotuseranswer': cannotuseranswer,
-
-                'istexttopic': istexttopic,
-                'makessenseq': makessenseq,
-                'makessensea': makessensea,
-                'translationquality': translationquality,
-                'canuseonlytextq': canuseonlytextq,
-                'typeq': typeq
-
-            },
+            type: 'DElETE',
+            url: '/question-answer',
+            data: {'iduser': iduser, 'idarticle': idarticle, 'idqa': idqa},
             dataType: 'json',
+            tryCount: 0,
+            retryLimit: 3,
             success: function (response) {
-                window.location.href = './6-user.html'
+                window.alert("Registro removido com sucesso!")
+                window.location.href = './5-user.html'
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(textStatus, errorThrown);
+            error: function (jqXHR, xhr, textStatus, errorThrown) {
+                if (textStatus !== '') {
+                    this.tryCount++;
+                    if (this.tryCount <= this.retryLimit) {
+                        //try again
+                        $.ajax(this);
+                        return;
+                    }
+                    return;
+                }
+                if (xhr.status === 500) {
+                    //handle error
+                    console.log(textStatus, errorThrown);
+
+                } else {
+                    console.log(textStatus, errorThrown);
+                }
             }
         });
     }

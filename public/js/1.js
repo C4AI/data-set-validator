@@ -1,13 +1,10 @@
 (function ($) {
   "use strict";
 
-  /*==================================================================
-  [ Validate ]*/
   var input = $('.validate-input .input100');
 
   $('#login-btn').on('click', function () {
     var check = true;
-
     for (var i = 0; i < input.length; i++) {
       if (validate(input[i]) === false) {
         showValidate(input[i]);
@@ -18,10 +15,8 @@
     if (check) {
       validateUser(this)
     }
-
     return check;
   });
-
 
   $('.validate-form .input100').each(function () {
     $(this).focus(function () {
@@ -44,13 +39,11 @@
 
   function showValidate(input) {
     var thisAlert = $(input).parent();
-
     $(thisAlert).addClass('alert-validate');
   }
 
   function hideValidate(input) {
     var thisAlert = $(input).parent();
-
     $(thisAlert).removeClass('alert-validate');
   }
 
@@ -72,7 +65,7 @@
         if (rowCount === 1) {
           localStorage.setItem('iduser', iduser)
           localStorage.setItem('email', email)
-          window.location.href = './3-instructions.html';
+          window.location.href = './3.1-instructions.html';
         }
         else {
           window.location.href = './2-user-not-found.html';

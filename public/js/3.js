@@ -13,7 +13,7 @@
             alert("Por favor, você deve confirmar a leitura das instruções antes de iniciar.");
             return;
         }
-        window.location.href = './4-validate-question-answer.html'
+        window.location.href = './4.1-validate-answer.html'
     }
     function testUser(){
         const localStorage = window.localStorage
