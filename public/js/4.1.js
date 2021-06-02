@@ -25,7 +25,7 @@
                     $("#questionen").empty().append(questionen);
                     $("#questionpt").empty().append(questionpt);
                 } else {
-                    window.location.href = './4.3-validate-question-answer.html'
+                    window.location.href = './4.2-validate-question-answer.html'
                 }
             },
             error: function (jqXHR, xhr, textStatus, errorThrown) {
@@ -90,7 +90,7 @@
             },
             dataType: 'json',
             success: function (response) {
-                window.location.href = './4.3-validate-question-answer.html'
+                window.location.href = './4.2-validate-question-answer.html'
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
