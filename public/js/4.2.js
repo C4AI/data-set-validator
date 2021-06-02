@@ -10,30 +10,34 @@
             tryCount: 0,
             retryLimit: 3,
             success: function (response) {
-                if (response.rows.length === 1) {
+                if (response.rows.length === 1 ) {
                     const {
                         idvalidate,
                         idqa,
+
                         title,
                         abstract,
                         questionen,
                         questionpt,
+
                         answerenv,
                         answerptv,
                         cannotuseranswer,
+
+                        actualstep
                     } = response.rows[0];
+
                     $("#idvalidate").empty().append(idvalidate);
                     $("#idqa").empty().append(idqa);
+
+                    $("#title").empty().append(title);
+                    $("#abstract").empty().append(abstract);
+                    $("#questionen").empty().append(questionen);
+                    $("#questionpt").empty().append(questionpt);
 
                     $("#answerenv").empty().append(answerenv);
                     $("#answerptv").empty().append(answerptv);
                     $("#cannotuseranswer").empty().append(cannotuseranswer);
-
-                    $("#title").empty().append(title);
-                    $("#abstract").empty().append(abstract);
-
-                    $("#questionen").empty().append(questionen);
-                    $("#questionpt").empty().append(questionpt);
 
                 } else {
                     window.location.href = './4.1-validate-answer.html'
@@ -116,7 +120,7 @@
             },
             dataType: 'json',
             success: function (response) {
-                window.location.href = './5-user.html'
+                window.location.href = './4.3-validate-question-answer.html'
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);

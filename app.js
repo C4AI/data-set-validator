@@ -104,18 +104,21 @@ app.get('/validate', async (req, res) => {
     try {
         const {iduser} = req.query;
         const query = `
-            SELECT v.idvalidate,
+            SELECT 
+                   v.idvalidate,
                    v.idqa,
                    a.title,
                    a.abstract,
 
                    v.answeren as answerenv ,
                    v.answerpt as answerptv,
+                   v.cannotuseranswer,
+                   
                    v.questionen as questionenv,
                    v.questionpt as questionptv,
-                   v.actualstep,
                    v.cannotuserparaphase,
-                   v.cannotuseranswer,
+                   
+                   v.actualstep,
                    
                    q.questionen,
                    q.questionpt,
