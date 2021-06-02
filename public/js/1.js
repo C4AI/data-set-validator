@@ -18,6 +18,21 @@
     return check;
   });
 
+  $('#resumo-btn').on('click', function () {
+    var check = true;
+    for (var i = 0; i < input.length; i++) {
+      if (validate(input[i]) === false) {
+        showValidate(input[i]);
+        check = false;
+      }
+    }
+
+    if (check) {
+      validateUserResumo(this)
+    }
+    return check;
+  });
+
   $('.validate-form .input100').each(function () {
     $(this).focus(function () {
       hideValidate(this);
@@ -66,6 +81,36 @@
           localStorage.setItem('iduser', iduser)
           localStorage.setItem('email', email)
           window.location.href = './3.1-instructions.html';
+        }
+        else {
+          window.location.href = './2-user-not-found.html';
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });
+  }
+
+  function validateUserResumo(form) {
+    // Get some values from elements on the page:
+    var $form = $(form),
+        email = $("#email").val(),
+        iduser = $("#iduser").val(),
+        url = "/user"
+
+    $.ajax({
+      type: 'GET',
+      url: url,
+      data: { 'iduser': iduser, 'email': email },
+      dataType: 'json',
+      success: function (response) {
+        var rowCount = response.rowCount;
+        const localStorage = window.localStorage
+        if (rowCount === 1) {
+          localStorage.setItem('iduser', iduser)
+          localStorage.setItem('email', email)
+          window.location.href = './5-user.html';
         }
         else {
           window.location.href = './2-user-not-found.html';
