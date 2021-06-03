@@ -91,8 +91,8 @@
         const iduser = testUser();
         const idqa = $("#idqa").text();
 
-        const answerenv = $("#answerenv").text();
-        const answerptv = $("#answerptv").text();
+        const answerenv = $("#answerenv").val();
+        const answerptv = $("#answerptv").val();
         const cannotuseranswer = Boolean($("#cannotuseranswer").text());
 
         /*validando*/
@@ -115,8 +115,10 @@
 
                 'questionenv': questionenv,
                 'questionptv': questionptv,
-                'cannotuserparaphase': cannotuserparaphase
+                'cannotuserparaphase': cannotuserparaphase,
 
+                'iscomplete': false,
+                'actualstep': 2
             },
             dataType: 'json',
             success: function (response) {

@@ -168,8 +168,18 @@ app.put('/validate', async (req, res) => {
     const client = await pool.connect();
     try {
         const {
-            idvalidate, iduser, idqa, answeren, answerpt, cannotuseranswer, istexttopic, makessenseq,
-            makessensea, translationquality, canuseonlytextq, typeq,
+            idvalidate,
+            iduser,
+            idqa,
+            answeren,
+            answerpt,
+            cannotuseranswer,
+            istexttopic,
+            makessenseq,
+            makessensea,
+            translationquality,
+            canuseonlytextq,
+            typeq,
             questionen,
             questionpt,
             cannotuserparaphase,
