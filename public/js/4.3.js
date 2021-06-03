@@ -134,8 +134,8 @@
                 'answerpt': answerptv,
                 'cannotuseranswer': cannotuseranswer,
 
-                'questionenv': questionenv,
-                'questionptv': questionptv,
+                'questionen': questionenv,
+                'questionpt': questionptv,
                 'cannotuserparaphase': cannotuserparaphase,
 
                 'istexttopic': istexttopic,
