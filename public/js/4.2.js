@@ -27,17 +27,27 @@
                         actualstep
                     } = response.rows[0];
 
-                    $("#idvalidate").empty().append(idvalidate);
-                    $("#idqa").empty().append(idqa);
+                    switch (actualstep + 1) {
+                        case 2:
+                            $("#idvalidate").empty().append(idvalidate);
+                            $("#idqa").empty().append(idqa);
 
-                    $("#title").empty().append(title);
-                    $("#abstract").empty().append(abstract);
-                    $("#questionen").empty().append(questionen);
-                    $("#questionpt").empty().append(questionpt);
+                            $("#title").empty().append(title);
+                            $("#abstract").empty().append(abstract);
+                            $("#questionen").empty().append(questionen);
+                            $("#questionpt").empty().append(questionpt);
 
-                    $("#answerenv").empty().append(answerenv);
-                    $("#answerptv").empty().append(answerptv);
-                    $("#cannotuseranswer").empty().append(cannotuseranswer);
+                            $("#answerenv").empty().append(answerenv);
+                            $("#answerptv").empty().append(answerptv);
+                            $("#cannotuseranswer").empty().append(cannotuseranswer);
+
+                            break;
+                        case 3:
+                            window.location.href = './4.3-validate-question-answer.html'
+                            break;
+                        default:
+                            window.location.href = './4.1-validate-answer.html'
+                    }
 
                 } else {
                     window.location.href = './4.1-validate-answer.html'

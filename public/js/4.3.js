@@ -1,6 +1,5 @@
 (function ($) {
     "use strict";
-
     $(window).one("load", function () {
         const iduser = testUser();
         $.ajax({
@@ -26,27 +25,38 @@
                         questionptv,
                         cannotuserparaphase,
                         answeren,
-                        answerpt
+                        answerpt,
+
+                        actualstep
                     } = response.rows[0];
-                    $("#idvalidate").empty().append(idvalidate);
-                    $("#idqa").empty().append(idqa);
 
-                    $("#answerenv").empty().append(answerenv);
-                    $("#answerptv").empty().append(answerptv);
-                    $("#cannotuseranswer").empty().append(cannotuseranswer);
+                    switch (actualstep + 1) {
+                        case 2:
+                            window.location.href = './4.2-validate-question.html'
+                            break;
+                        case 3:
+                            $("#idvalidate").empty().append(idvalidate);
+                            $("#idqa").empty().append(idqa);
 
-                    $("#questionenv").empty().append(questionenv);
-                    $("#questionptv").empty().append(questionptv);
-                    $("#cannotuserparaphase").empty().append(cannotuserparaphase);
+                            $("#answerenv").empty().append(answerenv);
+                            $("#answerptv").empty().append(answerptv);
+                            $("#cannotuseranswer").empty().append(cannotuseranswer);
 
-                    $("#title").empty().append(title);
-                    $("#abstract").empty().append(abstract);
+                            $("#questionenv").empty().append(questionenv);
+                            $("#questionptv").empty().append(questionptv);
+                            $("#cannotuserparaphase").empty().append(cannotuserparaphase);
 
-                    $("#questionen").empty().append(questionen);
-                    $("#questionpt").empty().append(questionpt);
-                    $("#answeren").empty().append(answeren);
-                    $("#answerpt").empty().append(answerpt);
+                            $("#title").empty().append(title);
+                            $("#abstract").empty().append(abstract);
 
+                            $("#questionen").empty().append(questionen);
+                            $("#questionpt").empty().append(questionpt);
+                            $("#answeren").empty().append(answeren);
+                            $("#answerpt").empty().append(answerpt);
+                            break;
+                        default:
+                            window.location.href = './4.1-validate-answer.html'
+                    }
                 } else {
                     window.location.href = './4.1-validate-answer.html'
                 }
