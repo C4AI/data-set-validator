@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="txt1 p-b-11">
-                    Pergunta em inglês
+                    Pergunta original em inglês
                 </div>
 
                 <div class="wrap-input100 m-b-36">
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="txt1 p-b-11">
-                    Resposta em inglês
+                    Resposta original em inglês
                 </div>
 
                 <div class="wrap-input100 m-b-36">
@@ -71,8 +71,20 @@
                     <span class="focus-input100"></span>
                 </div>
 
+
                 <div class="txt1 p-b-11">
-                    Pergunta em português
+                    Sua resposta em inglês
+                </div>
+
+                <div class="wrap-input100 m-b-36">
+                    <label for="answeren"></label>
+                    <textarea readonly class="input100 height-100" id="answeren" type="text"></textarea>
+                    <span class="focus-input100"></span>
+                </div>
+
+
+                <div class="txt1 p-b-11">
+                    Pergunta original em português
                 </div>
 
                 <div class="wrap-input100 m-b-36">
@@ -82,7 +94,17 @@
                 </div>
 
                 <div class="txt1 p-b-11">
-                    Resposta em português
+                    Resposta original em português
+                </div>
+
+                <div class="wrap-input100 m-b-36">
+                    <label for="answerpt"></label>
+                    <textarea readonly class="input100 height-100" id="answerpt" type="text"></textarea>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="txt1 p-b-11">
+                    Sua resposta em português
                 </div>
 
                 <div class="wrap-input100 m-b-36">
@@ -95,16 +117,18 @@
                     Responda às duas perguntas abaixo
                 </div>
 
-                <div id= "istexttopic" class="validate container">
+                <div id="istexttopic" class="validate container">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary">
-                            <input value = "true" type="radio" name="istexttopic" id="istexttopicSim" autocomplete="off"> Sim
+                            <input value="true" type="radio" name="istexttopic" id="istexttopicSim" autocomplete="off">
+                            Sim
                         </label>
                         <label class="btn btn-secondary">
-                            <input value = "false" type="radio" name="istexttopic" id="istexttopicNao" autocomplete="off"> Não
+                            <input value="false" type="radio" name="istexttopic" id="istexttopicNao" autocomplete="off">
+                            Não
                         </label>
                         <span class="txt1a p-l-40 p-t-14">
-                            O resumo trata de tema relacionado à Amazônia Azul?
+                            Trata-se de uma pergunta genérica? Exemplo: "Qual o tamanho do campo de petróleo?".
                         </span>
                     </div>
                 </div>
@@ -112,13 +136,15 @@
                 <div id="canuseonlytextq" class="validate p-t-10 container">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary">
-                            <input value = "true" type="radio" name="canuseonlytextq" id="canuseonlytextqSim" autocomplete="off"> Sim
+                            <input value="true" type="radio" name="canuseonlytextq" id="canuseonlytextqSim"
+                                   autocomplete="off"> Sim
                         </label>
                         <label class="btn btn-secondary">
-                            <input value = "false" type="radio" name="canuseonlytextq" id="canuseonlytextqNao" autocomplete="off"> Não
+                            <input value="false" type="radio" name="canuseonlytextq" id="canuseonlytextqNao"
+                                   autocomplete="off"> Não
                         </label>
                         <span class="txt1a p-l-40 p-t-1">
-                        A pergunta pode ser respondida apenas com as informações que estão explícitas no resumo?
+                        A pergunta pode ser respondida apenas com as informações que estão no resumo?
                         </span>
                     </div>
                 </div>
@@ -126,16 +152,16 @@
                 <div class="txt1 p-t-40">
                     Avalie a qualidade do conjunto pergunta-resposta escolhendo uma quantidade de estrelas, sendo:
                     <ul class="txt3">
-                        <li>1 estrela: Muito ruim</li>
-                        <li>2 estrelas: Ruim</li>
-                        <li>3 estrelas: Justa (ou Aceitável)</li>
-                        <li>4 estrelas: Boa</li>
-                        <li>5 estrelas: Muito boa</li>
+                        <li>1 estrela: Discordo totalmente</li>
+                        <li>2 estrelas: Discordo parcialmente</li>
+                        <li>3 estrelas: Não concordo, nem discordo</li>
+                        <li>4 estrelas: Concordo parcialmente</li>
+                        <li>5 estrelas: Concordo totalmente</li>
                     </ul>
                 </div>
 
-                <span class="txt1a p-t-10">A pergunta faz sentido</span>
                 <div id="makessenseq" class="validate star-rating">
+                    <span class="txt1a p-t-10">A pergunta faz sentido.</span>
                     <input type="radio" id="5-stars-makessenseq" name="makessenseq" value="5"/>
                     <label for="5-stars-makessenseq" class="star">&#9733;</label>
                     <input type="radio" id="4-stars-makessenseq" name="makessenseq" value="4"/>
@@ -148,8 +174,8 @@
                     <label for="1-star-makessenseq" class="star">&#9733;</label>
                 </div>
 
-                <span class="txt1a p-t-10">A resposta faz sentido</span>
                 <div id="makessensea" class="validate star-rating">
+                    <span class="txt1a p-t-10">A pergunta é difícil.</span>
                     <input type="radio" id="5-stars-makessensea" name="makessensea" value="5"/>
                     <label for="5-stars-makessensea" class="star">&#9733;</label>
                     <input type="radio" id="4-stars-makessensea" name="makessensea" value="4"/>
@@ -162,8 +188,8 @@
                     <label for="1-star-makessensea" class="star">&#9733;</label>
                 </div>
 
-                <span class="txt1a p-t-10">Qualidade da tradução</span>
                 <div id="translationquality" class="validate star-rating">
+                    <span class="txt1a p-t-10">A sua resposta e a resposta original são equivalentes.</span>
                     <input type="radio" id="5-stars-translationquality" name="translationquality" value="5"/>
                     <label for="5-stars-translationquality" class="star">&#9733;</label>
                     <input type="radio" id="4-stars-translationquality" name="translationquality" value="4"/>
@@ -175,24 +201,28 @@
                     <input type="radio" id="1-star-translationquality" name="translationquality" value="1"/>
                     <label for="1-star-translationquality" class="star">&#9733;</label>
                 </div>
+
                 <span class="txt1a p-t-10">
                             Indique qual é o tipo da pergunta
                 </span>
                 <div class="p-t-7">
                     <select id="typeq" class="validate select txt1">
                         <option disabled selected value>--Selecione--</option>
-                        <option value="Por que meios">Por que meios</option>
-                        <option value="Quem">Quem</option>
-                        <option value="O que">O que</option>
-                        <option value="Quando">Quando</option>
-                        <option value="Onde">Onde</option>
-                        <option value="Por que">Por que</option>
-                        <option value="Como">Como</option>
+
+                        <option value="Who"> Who </option>
+                        <option value="What"> What </option>
+                        <option value="Where"> Where </option>
+                        <option value="When"> When </option>
+                        <option value="Why"> Why </option>
+                        <option value="How"> How </option>
+                        <option value="None of the above"> None of the above</option>
+
                     </select>
                 </div>
 
                 <div class="txt1 p-b-20 p-t-40">
-                    Pressione o botão abaixo para enviar suas respostas e continuar a tarefa. Você só conseguirá enviar suas respostas depois de responder todas as perguntas desta tela.
+                    Pressione o botão abaixo para enviar suas respostas e continuar a tarefa. Você só conseguirá enviar
+                    suas respostas depois de responder todas as perguntas desta tela.
                 </div>
 
                 <div class="container-login100-form-btn p-l-88 p-r-88 p-t-10 p-b-10">
