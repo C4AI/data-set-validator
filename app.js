@@ -118,6 +118,13 @@ app.get('/validate', async (req, res) => {
                    v.questionpt as questionptv,
                    v.cannotuserparaphase,
                    
+                   v.istexttopic,
+                   v.makessenseq,
+                   v.makessensea,
+                   v.translationquality,
+                   v.canuseonlytextq,
+                   v.typeq,
+                   
                    v.actualstep,
                    
                    q.questionen,

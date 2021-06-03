@@ -10,53 +10,60 @@
             tryCount: 0,
             retryLimit: 3,
             success: function (response) {
-                if (response.rows.length === 1) {
+                if (response.rows.length === 1 ) {
                     const {
                         idvalidate,
                         idqa,
+
                         title,
                         abstract,
                         questionen,
                         questionpt,
+
                         answerenv,
                         answerptv,
                         cannotuseranswer,
-                        questionenv,
-                        questionptv,
-                        cannotuserparaphase,
-                        answeren,
-                        answerpt,
 
-                        actualstep
+                        actualstep,
+
+                        istexttopic,
+                        makessenseq,
+                        makessensea,
+                        translationquality,
+                        canuseonlytextq,
+                        typeq
+
                     } = response.rows[0];
 
                     switch (actualstep + 1) {
-                        case 2:
-                            window.location.href = './4.2-validate-question.html'
-                            break;
                         case 3:
                             $("#idvalidate").empty().append(idvalidate);
                             $("#idqa").empty().append(idqa);
+
+                            $("#title").empty().append(title);
+                            $("#abstract").empty().append(abstract);
+                            $("#questionen").empty().append(questionen);
+                            $("#questionpt").empty().append(questionpt);
 
                             $("#answerenv").empty().append(answerenv);
                             $("#answerptv").empty().append(answerptv);
                             $("#cannotuseranswer").empty().append(cannotuseranswer);
 
-                            $("#questionenv").empty().append(questionenv);
-                            $("#questionptv").empty().append(questionptv);
-                            $("#cannotuserparaphase").empty().append(cannotuserparaphase);
+                            $("#istexttopic").empty().append(istexttopic);
+                            $("#makessenseq").empty().append(makessenseq);
+                            $("#makessensea").empty().append(makessensea);
+                            $("#translationquality").empty().append(translationquality);
+                            $("#canuseonlytextq").empty().append(canuseonlytextq);
+                            $("#typeq").empty().append(typeq);
 
-                            $("#title").empty().append(title);
-                            $("#abstract").empty().append(abstract);
-
-                            $("#questionen").empty().append(questionen);
-                            $("#questionpt").empty().append(questionpt);
-                            $("#answeren").empty().append(answeren);
-                            $("#answerpt").empty().append(answerpt);
+                            break;
+                        case 2:
+                            window.location.href = './4.2-validate-answer.html'
                             break;
                         default:
                             window.location.href = './4.1-validate-answer.html'
                     }
+
                 } else {
                     window.location.href = './4.1-validate-answer.html'
                 }
@@ -81,34 +88,28 @@
             }
         });
     });
-
 //////////////////////////////////////////////////////////////////////////////////
 
+    /*==================================================================
+  [ Validate ]*/
+    var input = $('.validate-input .input100');
 
     $('#btnEnviar').on("click", function () {
-        if (validate())
-            updateValidate()
-    });
-
-    function validate() {
-
         var check = true;
 
-        $("input:radio").each(function () {
-            var name = $(this).attr("name");
-            if ($("input:radio[name=" + name + "]:checked").length === 0) {
+        for (var i = 0; i < input.length; i++) {
+            if (validate(input[i]) === false) {
+                showValidate(input[i]);
                 check = false;
             }
-        });
-        $("option:selected:disabled").each(function () {
-            check = false;
-        });
+        }
 
-        if (!check) {
-            alert('Por favor, você somente poderá enviar suas respostas depois de responder todas as perguntas desta tela.');
+        if (check) {
+            updateValidate()
         }
         return check;
-    }
+
+    });
 
     function updateValidate() {
         const idvalidate = $("#idvalidate").text();
@@ -119,18 +120,18 @@
         const answerptv = $("#answerptv").text();
         const cannotuseranswer = Boolean($("#cannotuseranswer").text());
 
-        const questionenv = $("#questionenv").text();
-        const questionptv = $("#questionptv").text();
-        const cannotuserparaphase = Boolean($("#cannotuserparaphase").text());
+        const istexttopic = Boolean($("#istexttopic").text());
+        const makessenseq = $("#makessenseq").text();
+        const makessensea = $("#makessensea").text();
+        const translationquality = $("#translationquality").text();
+        const canuseonlytextq =Boolean( $("#canuseonlytextq").text());
+        const typeq = $("#typeq").text();
 
         /*validando*/
 
-        const istexttopic = $("#istexttopic input[type='radio']:checked").val();
-        const canuseonlytextq = $("#canuseonlytextq input[type='radio']:checked").val();
-        const makessenseq = $("#makessenseq input[type='radio']:checked").val();
-        const makessensea = $("#makessensea input[type='radio']:checked").val();
-        const translationquality = $("#translationquality input[type='radio']:checked").val();
-        const typeq = $("#typeq option:selected").text()
+        const questionenv = $("#questionenv").val();
+        const questionptv = $("#questionptv").val();
+        const cannotuserparaphase = Boolean($("#cannotuserparaphase").text());
 
         $.ajax({
             type: 'PUT',
@@ -148,16 +149,15 @@
                 'questionpt': questionptv,
                 'cannotuserparaphase': cannotuserparaphase,
 
-                'istexttopic': istexttopic,
-                'makessenseq': makessenseq,
-                'makessensea': makessensea,
-                'translationquality': translationquality,
-                'canuseonlytextq': canuseonlytextq,
-                'typeq': typeq,
+                'istexttopic' : istexttopic,
+                'makessenseq' : makessenseq,
+                'makessensea' : makessensea,
+                'translationquality' : translationquality,
+                'canuseonlytextq' : canuseonlytextq,
+                'typeq' : typeq,
 
                 'iscomplete': true,
                 'actualstep': 3
-
             },
             dataType: 'json',
             success: function (response) {
@@ -177,6 +177,34 @@
             throw new Error('No user found');
         } else
             return iduser;
+    }
+
+    $('.validate-form .input100').each(function () {
+        $(this).focus(function () {
+            hideValidate(this);
+        });
+    });
+
+    $('#cannotuseranswer').on("click", function () {
+        hideValidate(input);
+    });
+
+    function validate(input) {
+        const preenchido = $(input).val().trim() !== ''
+        const marcado = $("#cannotuserparaphase").is(":checked")
+        return preenchido !== marcado
+    }
+
+    function showValidate(input) {
+        var thisAlert = $(input).parent();
+
+        $(thisAlert).addClass('alert-validate');
+    }
+
+    function hideValidate(input) {
+        var thisAlert = $(input).parent();
+
+        $(thisAlert).removeClass('alert-validate');
     }
 
 })(jQuery);

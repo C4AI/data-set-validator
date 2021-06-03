@@ -10,45 +10,53 @@
             tryCount: 0,
             retryLimit: 3,
             success: function (response) {
-                if (response.rows.length === 1 ) {
+                if (response.rows.length === 1) {
                     const {
                         idvalidate,
                         idqa,
-
                         title,
                         abstract,
                         questionen,
                         questionpt,
-
                         answerenv,
                         answerptv,
                         cannotuseranswer,
+                        questionenv,
+                        questionptv,
+                        cannotuserparaphase,
+                        answeren,
+                        answerpt,
 
                         actualstep
                     } = response.rows[0];
 
                     switch (actualstep + 1) {
+                        case 3:
+                            window.location.href = './4.3-validate-question.html'
+                            break;
                         case 2:
                             $("#idvalidate").empty().append(idvalidate);
                             $("#idqa").empty().append(idqa);
-
-                            $("#title").empty().append(title);
-                            $("#abstract").empty().append(abstract);
-                            $("#questionen").empty().append(questionen);
-                            $("#questionpt").empty().append(questionpt);
 
                             $("#answerenv").empty().append(answerenv);
                             $("#answerptv").empty().append(answerptv);
                             $("#cannotuseranswer").empty().append(cannotuseranswer);
 
-                            break;
-                        case 3:
-                            window.location.href = './4.3-validate-question-answer.html'
+                            $("#questionenv").empty().append(questionenv);
+                            $("#questionptv").empty().append(questionptv);
+                            $("#cannotuserparaphase").empty().append(cannotuserparaphase);
+
+                            $("#title").empty().append(title);
+                            $("#abstract").empty().append(abstract);
+
+                            $("#questionen").empty().append(questionen);
+                            $("#questionpt").empty().append(questionpt);
+                            $("#answeren").empty().append(answeren);
+                            $("#answerpt").empty().append(answerpt);
                             break;
                         default:
                             window.location.href = './4.1-validate-answer.html'
                     }
-
                 } else {
                     window.location.href = './4.1-validate-answer.html'
                 }
@@ -73,28 +81,34 @@
             }
         });
     });
+
 //////////////////////////////////////////////////////////////////////////////////
 
-    /*==================================================================
-  [ Validate ]*/
-    var input = $('.validate-input .input100');
 
     $('#btnEnviar').on("click", function () {
+        if (validate())
+            updateValidate()
+    });
+
+    function validate() {
+
         var check = true;
 
-        for (var i = 0; i < input.length; i++) {
-            if (validate(input[i]) === false) {
-                showValidate(input[i]);
+        $("input:radio").each(function () {
+            var name = $(this).attr("name");
+            if ($("input:radio[name=" + name + "]:checked").length === 0) {
                 check = false;
             }
-        }
+        });
+        $("option:selected:disabled").each(function () {
+            check = false;
+        });
 
-        if (check) {
-            updateValidate()
+        if (!check) {
+            alert('Por favor, você somente poderá enviar suas respostas depois de responder todas as perguntas desta tela.');
         }
         return check;
-
-    });
+    }
 
     function updateValidate() {
         const idvalidate = $("#idvalidate").text();
@@ -105,11 +119,18 @@
         const answerptv = $("#answerptv").text();
         const cannotuseranswer = Boolean($("#cannotuseranswer").text());
 
+        const questionenv = $("#questionenv").text();
+        const questionptv = $("#questionptv").text();
+        const cannotuserparaphase = Boolean($("#cannotuserparaphase").text());
+
         /*validando*/
 
-        const questionenv = $("#questionenv").val();
-        const questionptv = $("#questionptv").val();
-        const cannotuserparaphase = Boolean($("#cannotuserparaphase").text());
+        const istexttopic = $("#istexttopic input[type='radio']:checked").val();
+        const canuseonlytextq = $("#canuseonlytextq input[type='radio']:checked").val();
+        const makessenseq = $("#makessenseq input[type='radio']:checked").val();
+        const makessensea = $("#makessensea input[type='radio']:checked").val();
+        const translationquality = $("#translationquality input[type='radio']:checked").val();
+        const typeq = $("#typeq option:selected").text()
 
         $.ajax({
             type: 'PUT',
@@ -127,12 +148,20 @@
                 'questionpt': questionptv,
                 'cannotuserparaphase': cannotuserparaphase,
 
+                'istexttopic': istexttopic,
+                'makessenseq': makessenseq,
+                'makessensea': makessensea,
+                'translationquality': translationquality,
+                'canuseonlytextq': canuseonlytextq,
+                'typeq': typeq,
+
                 'iscomplete': false,
                 'actualstep': 2
+
             },
             dataType: 'json',
             success: function (response) {
-                window.location.href = './4.3-validate-question-answer.html'
+                window.location.href = './4.3-validate-question.html'
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
@@ -148,35 +177,6 @@
             throw new Error('No user found');
         } else
             return iduser;
-    }
-
-    $('.validate-form .input100').each(function () {
-        $(this).focus(function () {
-            hideValidate(this);
-        });
-    });
-
-    $('#cannotuseranswer').on("click", function () {
-        hideValidate(input);
-    });
-
-
-    function validate(input) {
-        const preenchido = $(input).val().trim() !== ''
-        const marcado = $("#cannotuserparaphase").is(":checked")
-        return preenchido !== marcado
-    }
-
-    function showValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).addClass('alert-validate');
-    }
-
-    function hideValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).removeClass('alert-validate');
     }
 
 })(jQuery);
