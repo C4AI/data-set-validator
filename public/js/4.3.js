@@ -22,6 +22,9 @@
                         answerenv,
                         answerptv,
                         cannotuseranswer,
+                        questionenv,
+                        questionptv,
+                        cannotuserparaphase,
                         answeren,
                         answerpt
                     } = response.rows[0];
@@ -30,8 +33,11 @@
 
                     $("#answerenv").empty().append(answerenv);
                     $("#answerptv").empty().append(answerptv);
-
                     $("#cannotuseranswer").empty().append(cannotuseranswer);
+
+                    $("#questionenv").empty().append(questionenv);
+                    $("#questionptv").empty().append(questionptv);
+                    $("#cannotuserparaphase").empty().append(cannotuserparaphase);
 
                     $("#title").empty().append(title);
                     $("#abstract").empty().append(abstract);
@@ -103,6 +109,10 @@
         const answerptv = $("#answerptv").text();
         const cannotuseranswer = Boolean($("#cannotuseranswer").text());
 
+        const questionenv = $("#questionenv").text();
+        const questionptv = $("#questionptv").text();
+        const cannotuserparaphase = Boolean($("#cannotuserparaphase").text());
+
         /*validando*/
 
         const istexttopic = $("#istexttopic input[type='radio']:checked").val();
@@ -124,12 +134,19 @@
                 'answerpt': answerptv,
                 'cannotuseranswer': cannotuseranswer,
 
+                'questionenv': questionenv,
+                'questionptv': questionptv,
+                'cannotuserparaphase': cannotuserparaphase,
+
                 'istexttopic': istexttopic,
                 'makessenseq': makessenseq,
                 'makessensea': makessensea,
                 'translationquality': translationquality,
                 'canuseonlytextq': canuseonlytextq,
-                'typeq': typeq
+                'typeq': typeq,
+
+                'iscomplete': true,
+                'actualstep': 3
 
             },
             dataType: 'json',

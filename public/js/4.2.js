@@ -91,14 +91,14 @@
         const iduser = testUser();
         const idqa = $("#idqa").text();
 
-        const answerenv = $("#answerenv").val();
-        const answerptv = $("#answerptv").val();
+        const answerenv = $("#answerenv").text();
+        const answerptv = $("#answerptv").text();
         const cannotuseranswer = Boolean($("#cannotuseranswer").text());
 
         /*validando*/
 
-        const questionenv = $("#questionenv").text();
-        const questionptv = $("#questionptv").text();
+        const questionenv = $("#questionenv").val();
+        const questionptv = $("#questionptv").val();
         const cannotuserparaphase = Boolean($("#cannotuserparaphase").text());
 
         $.ajax({
