@@ -65,7 +65,10 @@
         }
 
         if (check) {
-            saveValidate()
+            if ($("#cannotuseranswer").is(":checked")){
+                window.location.href = './4.1-validate-answer.html'
+            }else
+                saveValidate()
         }
         return check;
 
