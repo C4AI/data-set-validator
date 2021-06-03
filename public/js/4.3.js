@@ -131,7 +131,7 @@
 
         const questionenv = $("#questionenv").val();
         const questionptv = $("#questionptv").val();
-        const cannotuserparaphase = Boolean($("#cannotuserparaphase").text());
+        const cannotuserparaphase = $("#cannotuserparaphase").is(":checked")
 
         $.ajax({
             type: 'PUT',
