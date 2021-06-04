@@ -1,11 +1,15 @@
 (function ($) {
     "use strict";
-    const score = 10;
     $(document).ready(function() {
         $('.select').select2({ width: '100%' });
     });
     $(window).one("load", function () {
         const iduser = testUser();
+        const email = testEmail();
+
+        $("#iduser").empty().append(iduser);
+        $("#email").empty().append(email);
+
         $.ajax({
             type: 'GET',
             url: '/user/review',
@@ -15,14 +19,10 @@
             retryLimit: 3,
             success: function (response) {
                 const {
-                    email,
                     sumscore,
                 } = response.rows[0];
 
-                $("#iduser").empty().append(iduser);
-                $("#email").empty().append(email);
                 $("#sumscore").empty().append(sumscore);
-                $("#score").empty().append(score);
 
             },
             error: function (jqXHR, xhr, textStatus, errorThrown) {
@@ -220,6 +220,16 @@
             throw new Error('No user found');
         } else
             return iduser;
+    }
+
+    function testEmail() {
+        const localStorage = window.localStorage
+        const email = localStorage.getItem('email')
+        if (email == null || email.trim().length === 0) {
+            window.location.href = './1-login.html'
+            throw new Error('No user found');
+        } else
+            return email;
     }
 
 })(jQuery);
