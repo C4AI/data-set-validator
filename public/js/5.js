@@ -149,41 +149,36 @@
             window.alert("Não há perguntas para edição.")
         }
     });
-
+*/
     $('#btnDelete').on("click", function () {
 
-        const title = $("#idarticle option:selected").text()
-        const qa = $("#idqa option:selected").text()
+        const validate = $("#idvalidate option:selected").text()
+        const idvalidate = $("#idvalidate").val()
 
-        const idartitle = $("#idarticle").val()
-        const idqa = $("#idqa").val()
-
-        if (idarticle != null &&
-            idqa != null &&
-            idarticle.length > 0 &&
-            idqa.length > 0
+        if (idvalidate != null &&
+            validate != null &&
+            idvalidate.length > 0 &&
+            validate.length > 0
         ) {
             if (window.confirm(
-                "Confirma a remoção da pergunta "
-                + '"' + qa + '"' +
-                " referente ao texto "
-                + '"' + title + '"' +
+                "Confirma a remoção da validação referente a pergunta "
+                + '"' + validate + '"' +
                 " ? Essa ação é irreversível."
             )) {
-                deleteQA(idartitle, idqa);
+                deleteValidate(idvalidate);
             }
         } else {
-            window.alert("Não há perguntas para exclusão.")
+            window.alert("Não há validações para exclusão.")
         }
 
     });
 
-    function deleteQA(idarticle, idqa) {
+    function deleteValidate(idvalidate) {
         const iduser = testUser();
         $.ajax({
             type: 'DElETE',
-            url: '/question-answer',
-            data: {'iduser': iduser, 'idarticle': idarticle, 'idqa': idqa},
+            url: '/validate',
+            data: {'iduser': iduser, 'idvalidate': idvalidate},
             dataType: 'json',
             tryCount: 0,
             retryLimit: 3,
@@ -211,7 +206,7 @@
             }
         });
     }
-*/
+
     function testUser() {
         const localStorage = window.localStorage
         const iduser = localStorage.getItem('iduser')

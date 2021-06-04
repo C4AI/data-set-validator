@@ -355,7 +355,7 @@ app.get('/validate/one', async (req, res) => {
 app.delete('/validate', async (req, res) => {
     const client = await pool.connect();
     try {
-        const {iduser, idvalidate} = req.query;
+        const {iduser, idvalidate} = req.body;
         const query = `
             DELETE
             FROM validate
