@@ -1,6 +1,6 @@
 (function ($) {
     "use strict";
-    const score = 8;
+    const score = 10;
     $(document).ready(function() {
         $('.select').select2({ width: '100%' });
     });
@@ -16,21 +16,13 @@
             success: function (response) {
                 const {
                     email,
-                    sumview,
-                    sumskip,
-                    sumreject,
-                    sumanswer,
-                    sumscore
+                    sumscore,
                 } = response.rows[0];
 
                 $("#iduser").empty().append(iduser);
                 $("#email").empty().append(email);
-                $("#sumview").empty().append(sumview);
-                $("#sumskip").empty().append(sumskip);
-                $("#sumreject").empty().append(sumreject);
-                $("#sumanswer").empty().append(sumanswer);
                 $("#sumscore").empty().append(sumscore);
-                $("#score").empty().append(" / " + score);
+                $("#score").empty().append(score);
 
             },
             error: function (jqXHR, xhr, textStatus, errorThrown) {

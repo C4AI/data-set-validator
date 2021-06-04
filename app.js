@@ -40,6 +40,39 @@ app.get('/', function (req, res) {
 });
 
 ////////////////////////////////USER/////////////////////////////////////////////
+app.get('/user/review', async (req, res) => {
+    const client = await pool.connect();
+    try {
+        const {iduser} = req.query;
+        const result = await client
+            .query(
+                `select u.iduser,
+                        u.email,
+                        sum(CASE cannotuserparaphase
+                                WHEN false then 1
+                                else 0.5
+                            END) as sumscore
+                 from validate
+                          inner join user1 u on validate.iduser = u.iduser
+                 where isComplete = true
+                   AND answeren is not null
+                   AND answerpt is not null
+                   AND cannotuseranswer = false
+                   and u.iduser = $1
+                 GROUP by u.iduser, u.email;`,
+                [iduser]);
+
+        res.send(JSON.stringify(result));
+
+    } catch (err) {
+        console.error(err);
+        res.send("Error " + err);
+    } finally {
+        client.release();
+    }
+})
+
+
 app.get('/user', async (req, res) => {
     const client = await pool.connect();
     try {
@@ -87,7 +120,7 @@ app.get('/question-answer/validate/', async (req, res) => {
             LIMIT 1;`;
 
         const result = await client
-            .query(query,[iduser]);
+            .query(query, [iduser]);
 
         res.send(JSON.stringify(result));
 
@@ -96,7 +129,8 @@ app.get('/question-answer/validate/', async (req, res) => {
         res.send("Error " + err);
     } finally {
         client.release();
-    }})
+    }
+})
 ////////////////////////////////////////VALIDATE///////////////////////////////////////////////////////////////
 //PÁGINA 2 E 3//
 app.get('/validate', async (req, res) => {
@@ -104,29 +138,28 @@ app.get('/validate', async (req, res) => {
     try {
         const {iduser} = req.query;
         const query = `
-            SELECT 
-                   v.idvalidate,
+            SELECT v.idvalidate,
                    v.idqa,
                    a.title,
                    a.abstract,
 
-                   v.answeren as answerenv ,
-                   v.answerpt as answerptv,
+                   v.answeren   as answerenv,
+                   v.answerpt   as answerptv,
                    v.cannotuseranswer,
-                   
+
                    v.questionen as questionenv,
                    v.questionpt as questionptv,
                    v.cannotuserparaphase,
-                   
+
                    v.istexttopic,
                    v.makessenseq,
                    v.makessensea,
                    v.translationquality,
                    v.canuseonlytextq,
                    v.typeq,
-                   
+
                    v.actualstep,
-                   
+
                    q.questionen,
                    q.questionpt,
                    q.answeren,
@@ -136,7 +169,7 @@ app.get('/validate', async (req, res) => {
                      inner join article a on a.idarticle = q.idarticle
             WHERE v.iduser = $1
               AND v.iscomplete = FALSE
-            
+
             LIMIT 1;`;
 
         const result = await client
@@ -149,7 +182,8 @@ app.get('/validate', async (req, res) => {
         res.send("Error " + err);
     } finally {
         client.release();
-    }})
+    }
+})
 
 app.post('/validate', async (req, res) => {
     const client = await pool.connect();
@@ -160,7 +194,7 @@ app.post('/validate', async (req, res) => {
             VALUES ((SELECT CURRENT_DATE), $1, $2, $3, $4, $5, FALSE, 1);`;
 
         const result = await client
-            .query(query1,[answeren, answerpt, cannotuseranswer, iduser, idqa]);
+            .query(query1, [answeren, answerpt, cannotuseranswer, iduser, idqa]);
 
         res.send(JSON.stringify(result));
 
@@ -169,7 +203,8 @@ app.post('/validate', async (req, res) => {
         res.send("Error " + err);
     } finally {
         client.release();
-    }})
+    }
+})
 
 app.put('/validate', async (req, res) => {
     const client = await pool.connect();
@@ -194,37 +229,38 @@ app.put('/validate', async (req, res) => {
             iscomplete
         } = req.body;
         const query1 = `
-            INSERT INTO validate(
-                                 date, idvalidate, iduser, idqa, answeren, answerpt, cannotuseranswer, istexttopic, makessenseq,
+            INSERT INTO validate(date, idvalidate, iduser, idqa, answeren, answerpt, cannotuseranswer, istexttopic,
+                                 makessenseq,
                                  makessensea, translationquality, canuseonlytextq, typeq,
                                  questionen,
                                  questionpt,
                                  cannotuserparaphase,
                                  actualstep,
-                                 iscomplete
-                                 )
+                                 iscomplete)
             VALUES ((SELECT CURRENT_DATE), $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
-            ON CONFLICT (idvalidate) DO UPDATE SET (date,answeren, answerpt, cannotuseranswer, istexttopic, makessenseq,makessensea, 
-                                                                  translationquality, canuseonlytextq, typeq,
+            ON CONFLICT (idvalidate) DO UPDATE SET (date, answeren, answerpt, cannotuseranswer, istexttopic,
+                                                    makessenseq, makessensea,
+                                                    translationquality, canuseonlytextq, typeq,
                                                     questionen,
                                                     questionpt,
                                                     cannotuserparaphase,
                                                     actualstep,
                                                     iscomplete
-                                                   )=
-                
-                                                 (
-                                                  EXCLUDED.date,EXCLUDED.answeren,EXCLUDED.answerpt,EXCLUDED.cannotuseranswer,EXCLUDED.istexttopic,
-                                                  EXCLUDED.makessenseq,EXCLUDED.makessensea,EXCLUDED.translationquality,EXCLUDED.canuseonlytextq,
-                                                  EXCLUDED.typeq,
-                                                  EXCLUDED.questionen,
-                                                  EXCLUDED.questionpt,
-                                                  EXCLUDED.cannotuserparaphase,
-                                                  EXCLUDED.actualstep,
-                                                  EXCLUDED.iscomplete
-                                                 );`
+                                                       )=
+                                                       (
+                                                        EXCLUDED.date, EXCLUDED.answeren, EXCLUDED.answerpt,
+                                                        EXCLUDED.cannotuseranswer, EXCLUDED.istexttopic,
+                                                        EXCLUDED.makessenseq, EXCLUDED.makessensea,
+                                                        EXCLUDED.translationquality, EXCLUDED.canuseonlytextq,
+                                                        EXCLUDED.typeq,
+                                                        EXCLUDED.questionen,
+                                                        EXCLUDED.questionpt,
+                                                        EXCLUDED.cannotuserparaphase,
+                                                        EXCLUDED.actualstep,
+                                                        EXCLUDED.iscomplete
+                                                           );`
         const result = await client
-            .query(query1,[idvalidate, iduser, idqa, answeren, answerpt, cannotuseranswer, istexttopic, makessenseq,
+            .query(query1, [idvalidate, iduser, idqa, answeren, answerpt, cannotuseranswer, istexttopic, makessenseq,
                 makessensea, translationquality, canuseonlytextq, typeq,
                 questionen,
                 questionpt,
@@ -240,7 +276,8 @@ app.put('/validate', async (req, res) => {
         res.send("Error " + err);
     } finally {
         client.release();
-    }})
+    }
+})
 
 app.get('/validate/all', async (req, res) => {
     const client = await pool.connect();
@@ -265,7 +302,8 @@ app.get('/validate/all', async (req, res) => {
         res.send("Error " + err);
     } finally {
         client.release();
-    }})
+    }
+})
 
 app.get('/validate/one', async (req, res) => {
     const client = await pool.connect();
@@ -276,12 +314,12 @@ app.get('/validate/one', async (req, res) => {
                    v.idqa,
                    a.title,
                    a.abstract,
-                   
+
                    q.questionen,
                    q.questionpt,
                    q.answeren,
                    q.answerpt,
-                   
+
                    v.answeren,
                    v.answerpt,
                    v.cannotuseranswer,
@@ -295,10 +333,10 @@ app.get('/validate/one', async (req, res) => {
             FROM validate v
                      inner join questionanswer q on q.idqa = v.idqa
                      inner join article a on a.idarticle = q.idarticle
-            
+
             WHERE v.iduser = $1
               AND v.idvalidate = $2
-           
+
             LIMIT 1;`;
 
         const result = await client
@@ -311,7 +349,8 @@ app.get('/validate/one', async (req, res) => {
         res.send("Error " + err);
     } finally {
         client.release();
-    }})
+    }
+})
 
 app.delete('/validate', async (req, res) => {
     const client = await pool.connect();
@@ -334,4 +373,5 @@ app.delete('/validate', async (req, res) => {
         res.send("Error " + err);
     } finally {
         client.release();
-    }})
+    }
+})
