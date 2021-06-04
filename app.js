@@ -286,7 +286,7 @@ app.get('/validate/all', async (req, res) => {
         const query = `
             SELECT v.idvalidate,
                    v.iduser,
-                   q.questionen
+                   v.answeren
             FROM validate v
                      inner join questionanswer q on q.idqa = v.idqa
             WHERE v.iduser = $1

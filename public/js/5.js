@@ -47,20 +47,20 @@
 
         $.ajax({
             type: 'GET',
-            url: '/question-answer/article/all',
+            url: '/validate/all',
             data: {'iduser': iduser},
             dataType: 'json',
             tryCount: 0,
             retryLimit: 3,
             success: function (response) {
-                $('#idarticle').empty();
+                $('#idvalidate').empty();
                 $.each(response.rows, function (index, element) {
-                    $('#idarticle').append($('<option/>', {
-                        value: element.idarticle,
-                        text: element.title
+                    $('#idvalidate').append($('<option/>', {
+                        value: element.idvalidate,
+                        text: element.answeren
                     }));
                 });
-                $('#idarticle').trigger("change");
+                $('#idvalidate').trigger("change");
             },
             error: function (jqXHR, xhr, textStatus, errorThrown) {
                 if (textStatus !== '') {
@@ -90,8 +90,8 @@
             $("#btnContinuar").empty().append("Finalizar tarefa");
         }
     });
-
-    $('#idarticle').on("change", function () {
+/*
+    $('#idvalidate').on("change", function () {
         const iduser = testUser();
 
         $.ajax({
@@ -211,7 +211,7 @@
             }
         });
     }
-
+*/
     function testUser() {
         const localStorage = window.localStorage
         const iduser = localStorage.getItem('iduser')

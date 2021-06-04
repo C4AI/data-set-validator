@@ -106,6 +106,8 @@
 
         if (check) {
             updateValidate()
+        } else {
+            window.alert("Existem erros de preenchimento, por favor verifique os campos.")
         }
         return check;
 
@@ -197,7 +199,6 @@
 
     function showValidate(input) {
         var thisAlert = $(input).parent();
-
         $(thisAlert).addClass('alert-validate');
     }
 

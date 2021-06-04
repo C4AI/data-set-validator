@@ -69,6 +69,8 @@
                 window.location.href = './4.1-validate-answer.html'
             }else
                 saveValidate()
+        }else{
+            window.alert("Existem erros de preenchimento, por favor verifique os campos.")
         }
         return check;
 
@@ -130,7 +132,6 @@
 
     function showValidate(input) {
         var thisAlert = $(input).parent();
-
         $(thisAlert).addClass('alert-validate');
     }
 
