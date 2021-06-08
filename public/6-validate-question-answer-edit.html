@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Question-Answer Form</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!--===============================================================================================-->
+    <link href="css/util.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+</head>
+<body id="bQA">
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+            <form class="login100-form validate-form flex-sb flex-w">
+
+                <div class="login100-form-title p-b-32">
+                    Edite sua validação
+                </div>
+
+                <div class="txt1 p-b-40 p-t-15">
+                    Abaixo são apresentados o texto, o conjunto pergunta/resposta original, o seu conjunto
+                    pergunta/resposta e as outras informações
+                    referentes a sua validação.
+                    Altere o que for necessário, exceto sua resposta a pergunta original.
+                </div>
+
+                <div id=idqa style="display:none">
+                </div>
+
+                <div id=idvalidate style="display:none">
+                </div>
+
+                <div class="txt1 p-b-10" id=title>
+                </div>
+
+                <div class="txt4 p-b-20 p-t-10" id=abstract>
+                </div>
+
+                <div class="txt1 p-b-11">
+                    Pergunta original em inglês
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-36" data-validate="This field is required">
+                    <label for="questionen"></label>
+                    <textarea readonly class="input100 height-100" id="questionen" type="text"> </textarea>
+                    <div class="focus-input100"></div>
+                </div>
+
+                <div class="txt1 p-b-11">
+                    Resposta original em inglês
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-36" data-validate="This field is required">
+                    <label for="answeren"></label>
+                    <textarea readonly class="input100 height-100" id="answeren" type="text"></textarea>
+                    <div class="focus-input100"></div>
+                </div>
+
+                <div class="txt1 p-b-11">
+                    Pergunta original em português
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-36" data-validate="This field is required">
+                    <label for="questionpt"></label>
+                    <textarea readonly class="input100 height-100" id="questionpt" type="text"></textarea>
+                    <div class="focus-input100"></div>
+                </div>
+
+                <div class="txt1 p-b-11">
+                    Resposta original em português
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-36" data-validate="This field is required">
+                    <label for="answerpt"></label>
+                    <textarea readonly class="input100 height-100" id="answerpt" type="text"></textarea>
+                    <div class="focus-input100"></div>
+                </div>
+
+ <!--------------------------------->
+                <div class="txt1 p-b-11">
+                    Sua paráfrase da pergunta em inglês
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-36" data-validate="This field is required">
+                    <label for="questionen"></label>
+                    <textarea class="input100 height-100" id="questionenv" type="text"> </textarea>
+                    <div class="focus-input100"></div>
+                </div>
+
+                <div class="txt1 p-b-11">
+                    Sua paráfrase da pergunta em português
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-36" data-validate="This field is required">
+                    <label for="questionpt"></label>
+                    <textarea class="input100 height-100" id="questionptv" type="text"></textarea>
+                    <div class="focus-input100"></div>
+                </div>
+
+                <div class="txt1 p-b-40 p-t-15">
+                    Se você não consegue parafrasear a pergunta, marque a opção abaixo. ATENÇÃO: Para marcar essa opção,
+                    as caixas de texto das respostas devem estar vazias.
+                </div>
+
+                <div class="login100-form-title p-b-40 p-l-50">
+                    <input class="input-checkbox100" id="cannotuserparaphase" name="agree" type="checkbox">
+                    <label class="label-checkbox100" for="cannotuserparaphase">
+                        Não consigo parafrasear a pergunta
+                    </label>
+                </div>
+
+                <div class="txt1 p-b-40 p-t-20">
+                    Responda às duas perguntas abaixo
+                </div>
+
+                <div id="istexttopic" class="validate container">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary">
+                            <input value="true" type="radio" name="istexttopic" id="istexttopicSim" autocomplete="off">
+                            Sim
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input value="false" type="radio" name="istexttopic" id="istexttopicNao" autocomplete="off">
+                            Não
+                        </label>
+                        <span class="txt1a p-l-40 p-t-14">
+                            Trata-se de uma pergunta genérica? Exemplo: "Qual o tamanho do campo de petróleo?".
+                        </span>
+                    </div>
+                </div>
+
+                <div id="canuseonlytextq" class="validate p-t-10 container">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary">
+                            <input value="true" type="radio" name="canuseonlytextq" id="canuseonlytextqSim"
+                                   autocomplete="off"> Sim
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input value="false" type="radio" name="canuseonlytextq" id="canuseonlytextqNao"
+                                   autocomplete="off"> Não
+                        </label>
+                        <span class="txt1a p-l-40 p-t-1">
+                        A pergunta pode ser respondida apenas com as informações que estão no resumo?
+                        </span>
+                    </div>
+                </div>
+
+                <div class="txt1 p-t-40">
+                    Avalie a qualidade do conjunto pergunta-resposta escolhendo uma quantidade de estrelas, sendo:
+                    <ul class="txt3">
+                        <li>1 estrela: Discordo totalmente</li>
+                        <li>2 estrelas: Discordo parcialmente</li>
+                        <li>3 estrelas: Não concordo, nem discordo</li>
+                        <li>4 estrelas: Concordo parcialmente</li>
+                        <li>5 estrelas: Concordo totalmente</li>
+                    </ul>
+                </div>
+                <div class="container">
+                    <span class="txt1a p-t-10 p-l-10">A pergunta faz sentido.</span>
+                    <div id="makessenseq" class="validate star-rating">
+                        <input type="radio" id="5-stars-makessenseq" name="makessenseq" value="5"/>
+                        <label for="5-stars-makessenseq" class="star">&#9733;</label>
+                        <input type="radio" id="4-stars-makessenseq" name="makessenseq" value="4"/>
+                        <label for="4-stars-makessenseq" class="star">&#9733;</label>
+                        <input type="radio" id="3-stars-makessenseq" name="makessenseq" value="3"/>
+                        <label for="3-stars-makessenseq" class="star">&#9733;</label>
+                        <input type="radio" id="2-stars-makessenseq" name="makessenseq" value="2"/>
+                        <label for="2-stars-makessenseq" class="star">&#9733;</label>
+                        <input type="radio" id="1-star-makessenseq" name="makessenseq" value="1"/>
+                        <label for="1-star-makessenseq" class="star">&#9733;</label>
+                    </div>
+
+                    <span class="txt1a p-t-10 p-l-10">A pergunta é difícil.</span>
+                    <div id="makessensea" class="validate star-rating">
+                        <input type="radio" id="5-stars-makessensea" name="makessensea" value="5"/>
+                        <label for="5-stars-makessensea" class="star">&#9733;</label>
+                        <input type="radio" id="4-stars-makessensea" name="makessensea" value="4"/>
+                        <label for="4-stars-makessensea" class="star">&#9733;</label>
+                        <input type="radio" id="3-stars-makessensea" name="makessensea" value="3"/>
+                        <label for="3-stars-makessensea" class="star">&#9733;</label>
+                        <input type="radio" id="2-stars-makessensea" name="makessensea" value="2"/>
+                        <label for="2-stars-makessensea" class="star">&#9733;</label>
+                        <input type="radio" id="1-star-makessensea" name="makessensea" value="1"/>
+                        <label for="1-star-makessensea" class="star">&#9733;</label>
+                    </div>
+
+                    <span class="txt1a p-t-10 p-l-10">A sua resposta e a resposta original são equivalentes.</span>
+                    <div id="translationquality" class="validate star-rating">
+                        <input type="radio" id="5-stars-translationquality" name="translationquality" value="5"/>
+                        <label for="5-stars-translationquality" class="star">&#9733;</label>
+                        <input type="radio" id="4-stars-translationquality" name="translationquality" value="4"/>
+                        <label for="4-stars-translationquality" class="star">&#9733;</label>
+                        <input type="radio" id="3-stars-translationquality" name="translationquality" value="3"/>
+                        <label for="3-stars-translationquality" class="star">&#9733;</label>
+                        <input type="radio" id="2-stars-translationquality" name="translationquality" value="2"/>
+                        <label for="2-stars-translationquality" class="star">&#9733;</label>
+                        <input type="radio" id="1-star-translationquality" name="translationquality" value="1"/>
+                        <label for="1-star-translationquality" class="star">&#9733;</label>
+                    </div>
+                </div>
+                <span class="txt1a p-t-10">
+                            Indique qual é o tipo da pergunta
+                </span>
+                <div class="p-t-7">
+                    <select id="typeq" class="validate select txt1">
+                        <option disabled selected value>--Selecione--</option>
+
+                        <option value="1">Who</option>
+                        <option value="2">What</option>
+                        <option value="3">Where</option>
+                        <option value="4">When</option>
+                        <option value="5">Why</option>
+                        <option value="6">How</option>
+                        <option value="7">None of the above</option>
+
+                    </select>
+                </div>
+
+                <div class="txt1 p-b-10 p-t-10">
+                    Pressione o botão abaixo para armazenar suas alterações
+                </div>
+
+                <div class="container-login100-form-btn p-l-88 p-r-88 p-t-5 p-b-5">
+                    <button class="login100-form-btn" id="btnEnviar" type="button">
+                        Enviar alterações
+                    </button>
+                </div>
+
+                <div class="flex-sb-m w-full p-b-30 p-t-30">
+                    <a class="txt3" href="3.2-instructions-lite.html" target="_blank">
+                        Acesse novamente as instruções se tiver alguma dúvida.
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<!--===============================================================================================-->
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!--===============================================================================================-->
+<script src="js/6.js"></script>
+</html>

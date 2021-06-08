@@ -86,70 +86,28 @@
 
     $(window).ajaxComplete(function () {
         const sumscore = parseInt($("#sumscore").text());
-        if (sumscore >= score) {
+        if (sumscore >= 10) {
             $("#btnContinuar").empty().append("Finalizar tarefa");
         }
-    });
-/*
-    $('#idvalidate').on("change", function () {
-        const iduser = testUser();
-
-        $.ajax({
-            type: 'GET',
-            url: '/question-answer/article',
-            data: {'iduser': iduser, 'idarticle': this.value},
-            dataType: 'json',
-            tryCount: 0,
-            retryLimit: 3,
-            success: function (response) {
-
-                $('#idqa').empty();
-                $.each(response.rows, function (index, element) {
-                    $('#idqa').append($('<option/>', {
-                        value: element.idqa,
-                        text: element.questionen
-                    }));
-                });
-
-            },
-            error: function (jqXHR, xhr, textStatus, errorThrown) {
-                if (textStatus !== '') {
-                    this.tryCount++;
-                    if (this.tryCount <= this.retryLimit) {
-                        //try again
-                        $.ajax(this);
-                        return;
-                    }
-                    return;
-                }
-                if (xhr.status === 500) {
-                    //handle error
-                    console.log(textStatus, errorThrown);
-
-                } else {
-                    console.log(textStatus, errorThrown);
-                }
-            }
-        });
     });
 
     $('#btnEdit').on("click", function () {
 
-        const idarticle = $("#idarticle").val()
-        const idqa = $("#idqa").val()
+        const validate = $("#idvalidate option:selected").text()
+        const idvalidate = $("#idvalidate").val()
 
-        if (idarticle != null &&
-            idqa != null &&
-            idarticle.length > 0 &&
-            idqa.length > 0
+        if (idvalidate != null &&
+            validate != null &&
+            idvalidate.length > 0 &&
+            validate.length > 0
         ) {
             window.location.href =
-                "7-question-answer-edit.html?idarticle=" + idarticle + "&idqa=" + idqa;
+                "6-validate-question-answer-edit.html?idvalidate=" + idvalidate;
         } else {
             window.alert("Não há perguntas para edição.")
         }
     });
-*/
+
     $('#btnDelete').on("click", function () {
 
         const validate = $("#idvalidate option:selected").text()

@@ -187,7 +187,7 @@
         });
     });
 
-    $('#cannotuseranswer').on("click", function () {
+    $('#cannotuserparaphase').on("click", function () {
         hideValidate(input);
     });
 

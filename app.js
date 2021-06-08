@@ -310,7 +310,8 @@ app.get('/validate/one', async (req, res) => {
     try {
         const {iduser, idvalidate} = req.query;
         const query = `
-            SELECT v.idvalidate,
+            SELECT 
+                   v.idvalidate,
                    v.idqa,
                    a.title,
                    a.abstract,
@@ -320,9 +321,13 @@ app.get('/validate/one', async (req, res) => {
                    q.answeren,
                    q.answerpt,
 
-                   v.answeren,
-                   v.answerpt,
-                   v.cannotuseranswer,
+                   v.questionen as questionenv,
+                   v.questionpt as questionptv,
+                   v.answeren as answerenv,
+                   v.answerpt as answerptv,
+                   
+                   v.cannotuserparaphase,
+                   
                    v.istexttopic,
                    v.makessenseq,
                    v.makessensea,
@@ -336,6 +341,8 @@ app.get('/validate/one', async (req, res) => {
 
             WHERE v.iduser = $1
               AND v.idvalidate = $2
+              AND v.iscomplete = TRUE
+              AND v.actualstep = 3
 
             LIMIT 1;`;
 
